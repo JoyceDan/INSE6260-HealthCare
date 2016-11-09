@@ -95,11 +95,22 @@
                         response.sendRedirect("login.jsp");
                         
                     }
+                    else{
+                        out.println("Invalid Username or Password! Please ");
+                        out.println("<a href=\"index.jsp\"> Try Again. </a>");
+                    }
                     
                 }catch(SQLException e)
                 {
                     System.out.println(e);
                 }
+            }
+        }
+        else if (request.getParameter("registerLogin")!=null  )
+        {
+            if(request.getParameter("registerLogin").equals("Register"))
+            {
+                response.sendRedirect("register.jsp");
             }
         }
     

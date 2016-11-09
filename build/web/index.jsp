@@ -35,12 +35,12 @@
             <tbody>
                 <tr>
                     <td>User_Name:</td>
-                    <td><input type="text" name="UserName" value="" /></td>
+                    <td><input type="text" name="UserName" value="" placeholder="Enter your username" size="50" /></td>
                 </tr>
                 
                 <tr>
                     <td>User_password:</td>
-                    <td><input type="password" name="Password" value="" /></td>
+                    <td><input type="password" name="Password" value="" placeholder="Enter your password" size="50" /></td>
                 </tr>
                 
                 <tr>
@@ -51,7 +51,7 @@
                         </select>
                     </td>
                     <td><input type="submit" value="Login" name="login" /></td>
-                    <td><input type="submit" value="Register" name="Register" /></td>
+                    <td><input type="submit" value="Register" name="registerLogin" /></td>
                 </tr>
             </tbody>
         </table>
