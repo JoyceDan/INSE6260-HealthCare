@@ -15,7 +15,7 @@
 <%
     
     session = request.getSession(false);
-    if(session.getAttribute("userid")!=null){
+    if(session.getAttribute("username")!=null){
         Connection con = null;
         PreparedStatement ps;
         ResultSet rs;
@@ -30,13 +30,13 @@
         
          try{
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                    query = "SELECT * FROM Login WHERE Login.ID = ?";
+                    query = "SELECT * FROM Login WHERE Login.Username = ?";
                     ps = con.prepareStatement(query);
-                    ps.setString(1,session.getAttribute("userid").toString());
+                    ps.setString(1,session.getAttribute("username").toString());
                     rs = ps.executeQuery();
                     if(rs.next()){
-                        out.println("Welcome,"+rs.getString("Name")+"!!!");
-                        out.println("<br><br> Login!!! Finally!!!");
+                        out.println("Welcome,"+rs.getString("Username")+"!!!");
+                        out.println("<br><br> Login!!! ");
                         
                         //create a logout button
                         out.println("<form action=\"logout.jsp\" method=\"post\">");
@@ -59,9 +59,9 @@
         {
             if(request.getParameter("login").equals("Login"))
             {
-                String USERID = request.getParameter("UserID");
+                String USERNAME = request.getParameter("UserName");
                 String PASSWORD = request.getParameter("Password");
-                String IDETIFY = request.getParameter("Charater");
+                String IDENTIFY = request.getParameter("Charater");
 
                 
                 Connection con= null;
@@ -78,11 +78,11 @@
                 
                 try{
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                    query = "SELECT * FROM Login WHERE Login.ID = ? AND Login.Password = ? AND Login.Idetify = ?";
+                    query = "SELECT * FROM Login WHERE Login.Username = ? AND Login.Password = ? AND Login.Identify = ?";
                     ps = con.prepareStatement(query);
-                    ps.setString(1, USERID);
+                    ps.setString(1, USERNAME);
                     ps.setString(2, PASSWORD);
-                    ps.setString(3, IDETIFY);
+                    ps.setString(3, IDENTIFY);
                     rs = ps.executeQuery();
                     
                     if(rs.next())
@@ -91,7 +91,7 @@
                         //creating session;
                         session = request.getSession();
                         //Start session with the help of attribute ID being unique
-                        session.setAttribute("userid", USERID);
+                        session.setAttribute("username", USERNAME);
                         response.sendRedirect("login.jsp");
                         
                     }

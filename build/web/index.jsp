@@ -34,8 +34,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>User_ID:</td>
-                    <td><input type="text" name="UserID" value="" /></td>
+                    <td>User_Name:</td>
+                    <td><input type="text" name="UserName" value="" /></td>
                 </tr>
                 
                 <tr>
