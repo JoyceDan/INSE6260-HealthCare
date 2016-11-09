@@ -38,11 +38,6 @@
                     <td><input type="text" name="UserID" value="" /></td>
                 </tr>
                 
-<!--                <tr>
-                    <td>User_Name:</td>
-                    <td><input type="text" name="UserName" value="" /></td>
-                </tr>-->
-                
                 <tr>
                     <td>User_password:</td>
                     <td><input type="password" name="Password" value="" /></td>
@@ -55,7 +50,7 @@
                             <option>Agent</option>
                         </select>
                     </td>
-                    <td><input type="submit" value="Login" name="Login" /></td>
+                    <td><input type="submit" value="Login" name="login" /></td>
                     <td><input type="submit" value="Register" name="Register" /></td>
                 </tr>
             </tbody>
