@@ -5,54 +5,11 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.sql.*;
 import java.util.Date;
+import java.sql.Connection;
 
 public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
-
-        public class Actor {
-            String URL = "jdbc:mysql://localhost:3306/Healthcare";
-            String USERNAME = "root";
-            String PASSWORD = "root";
-            
-            Connection connection = null;
-            PreparedStatement selectActors = null;
-            ResultSet resultSet = null;
-
-            public Actor(){
-                    try{
-                        connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-                        
-                        selectActors = connection.prepareStatement(
-                            "SELECT ID,Password,Idetify FROM Login"
-//                            +"WHERE Login.ID = ?"
-//                            +"AND Login.Password = ?"
-//                            +"AND Login.Idetify = ?"
-                        );
-
-
-                    }catch(SQLException e){
-                        e.printStackTrace();
-                }
-
-            }
-
-            public ResultSet getActors(){
-                try{
-//                    String UserID, String Password, String Charater
-//                    selectActors.setString(1, UserID);
-//                    selectActors.setString(2, Password);
-//                    selectActors.setString(3, Charater);
-                    resultSet = selectActors.executeQuery();
-
-                } catch(SQLException e){
-                    e.printStackTrace();
-                }
-            return resultSet;
-            }
-        
-        }
-        
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
   private static java.util.List<String> _jspx_dependants;
@@ -91,11 +48,124 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
  Class.forName("com.mysql.jdbc.Driver"); 
       out.write("\n");
       out.write("\n");
       out.write(" \n");
       out.write("<!DOCTYPE html>\n");
+      out.write("\n");
+
+    
+    session = request.getSession(false);
+    if(session.getAttribute("username")!=null){
+        Connection con = null;
+        PreparedStatement ps;
+        ResultSet rs;
+        String query;
+        
+        try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                }catch(Exception e)
+                {
+                    System.out.println(e);
+                }
+        
+         try{
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
+                    query = "SELECT * FROM Login WHERE Login.Username = ?";
+                    ps = con.prepareStatement(query);
+                    ps.setString(1,session.getAttribute("username").toString());
+                    rs = ps.executeQuery();
+                    if(rs.next()){
+                        
+                        out.println("Welcome,"+rs.getString("Username")+"!!!");
+                        out.println("<br><br> Login!!! ");
+                        
+                        //create a logout button
+                        out.println("<form action=\"logout.jsp\" method=\"post\">");
+                        out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
+                        out.println("</form>");
+                        
+                        out.println("<br><br><a href=\"changePassword.jsp?uname="+session.getAttribute("username").toString()+"\"> Change password </a>");
+                        
+                    }
+                    
+                    
+                }catch(SQLException e)
+                {
+                    System.out.println(e);
+                }
+        
+    }
+    
+    
+    if("POST".equalsIgnoreCase(request.getMethod()))
+    {
+        if(request.getParameter("login")!= null)
+        {
+            if(request.getParameter("login").equals("Login"))
+            {
+                String USERNAME = request.getParameter("UserName");
+                String PASSWORD = request.getParameter("Password");
+                String IDENTIFY = request.getParameter("Charater");
+
+                
+                Connection con= null;
+                PreparedStatement ps;
+                ResultSet rs;
+                String query;
+                
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                }catch(Exception e)
+                {
+                    System.out.println(e);
+                }
+                
+                try{
+                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
+                    query = "SELECT * FROM Login WHERE Login.Username = ? AND Login.Password = ? AND Login.Identify = ?";
+                    ps = con.prepareStatement(query);
+                    ps.setString(1, USERNAME);
+                    ps.setString(2, PASSWORD);
+                    ps.setString(3, IDENTIFY);
+                    rs = ps.executeQuery();
+                    
+                    if(rs.next())
+                    {
+                        //Login sucessful;
+                        //creating session;
+                        session = request.getSession();
+                        //Start session with the help of attribute ID being unique
+                        session.setAttribute("username", USERNAME);
+                        response.sendRedirect("login.jsp");
+                        
+                    }
+                    else{
+                        out.println("Invalid Username or Password! Please ");
+                        out.println("<a href=\"index.jsp\"> Try Again. </a>");
+                    }
+                    
+                }catch(SQLException e)
+                {
+                    System.out.println(e);
+                }
+            }
+        }
+        else if (request.getParameter("registerLogin")!=null  )
+        {
+            if(request.getParameter("registerLogin").equals("Register"))
+            {
+                response.sendRedirect("register.jsp");
+            }
+        }
+    
+    }
+
+
+
+      out.write("\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <title>login Page</title>\n");
@@ -108,91 +178,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print( date );
       out.write(" </p>\n");
       out.write("\n");
-      out.write("        ");
-      out.write("\n");
-      out.write("        ");
-
-//            String userid = new String();
-//            String userpwd = new String();
-//            String useridt = new String();
-//            
-//            if (request.getParameter("UserID") != null){
-//                userid = request.getParameter("UserID");
-//            }
-//            
-//            if (request.getParameter("Password") != null){
-//                userpwd = request.getParameter("Password");
-//            }
-//            
-//            if (request.getParameter("Charater") != null){
-//                useridt = request.getParameter("Charater");
-//            }
-//         
-            Actor actor = new Actor();
-            ResultSet actors = actor.getActors();
-            
-            
-        
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("        <table border=\"1\">\n");
-      out.write("            \n");
-      out.write("            <tbody>\n");
-      out.write("                <tr>\n");
-      out.write("                    <td>ID</td>\n");
-      out.write("                    <td>PWD</td>\n");
-      out.write("                    <td>WORK</td>\n");
-      out.write("                </tr>\n");
-      out.write("               ");
- while (actors.next()) { 
-      out.write("\n");
-      out.write("                <tr>\n");
-      out.write("                   <td>");
-      out.print(actors.getString("ID")   );
-      out.write("</td>\n");
-      out.write("                    <td>");
-      out.print(actors.getString("Password")   );
-      out.write("</td>\n");
-      out.write("                    <td>");
-      out.print(actors.getString("Idetify")   );
-      out.write("</td>\n");
-      out.write("                </tr>\n");
-      out.write("                ");
-}
-      out.write("\n");
-      out.write("            </tbody>\n");
-      out.write("        </table>\n");
-      out.write("\n");
-      out.write("\n");
       out.write("        \n");
-      out.write("        \n");
-      out.write("          ");
-  
-//        String USERNAME = "admin";  
-//        String USERPWD = "123456"; 
-//        String USERWORK = "Nurse";
-        
-          
-//        request.setCharacterEncoding("utf8");  
-//      
-//        String useriD = request.getParameter("UserID").trim();  
-//        String userPwd = request.getParameter("Password").trim();  
-//        String userwork = request.getParameter("Charater".trim());
-//        if(useriD == null || userPwd == null || userwork == null){  
-//            response.sendRedirect("index.jsp");  
-//            return;  
-//        }  
-//          
-//        if(useriD.equals(actors.getString("ID")) && userPwd.equals(actors.getString("Password")) && userwork.equals(actors.getString("Idetify"))) {  
-//            session.setMaxInactiveInterval(30*60);          // 设置session失效时间（timeout），单位为秒  
-//            session.setAttribute("userinfo", actors.getString("userid"));     // 用户名和密码正确，保存登录信息  
-//            response.sendRedirect("Patient_home.jsp");  
-//        } else {  
-//            response.sendRedirect("index.jsp");        // 用户名和密码错误，跳转到登录界面  
-//        }  
-    
-      out.write(" \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

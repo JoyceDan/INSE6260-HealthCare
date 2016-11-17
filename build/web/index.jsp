@@ -52,10 +52,12 @@
                     </td>
                     <td><input type="submit" value="Login" name="login" /></td>
                     <td><input type="submit" value="Register" name="registerLogin" /></td>
+                    
                 </tr>
             </tbody>
         </table>
         </form>
+            <input type="submit" value='Forgot password?' onclick='window.location.href="changePassword.jsp"'>
     </body>
 </html>
 
