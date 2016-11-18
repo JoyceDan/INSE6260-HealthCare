@@ -22,13 +22,9 @@
                 String gender= request.getParameter("Gender");
                 String age= request.getParameter("Age");
                 String address= request.getParameter("Address");
-                String timeweek= request.getParameter("TIMEWEEK");
-                String timeperfer= request.getParameter("TIMEPRERFER");
-                String genderoption= request.getParameter("Genderoption");
-                String traveltime= request.getParameter("TravelTime");
                 String email= request.getParameter("Email");
                 
-                if((!username.isEmpty())&&(!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!address.isEmpty())&&(!timeweek.isEmpty())&&(!timeperfer.isEmpty())&&(!genderoption.isEmpty())&&(!traveltime.isEmpty())&&(!email.isEmpty())){
+                if((!username.isEmpty())&&(!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!address.isEmpty())&&(!email.isEmpty())){
                     
                 }
             }
@@ -75,43 +71,7 @@
                         <td>Address: </td>
                         <td><input type="text" name="Address" value="" size="30" placeholder="Enter your Address" /></td>
                     </tr>
-                    <tr>
-                        <td>Which day you are convenient: </td>
-                        <td><select name="TIMEWEEK">
-                                <option>Anytime</option>
-                                <option>Monday</option>
-                                <option>Tuesday</option>
-                                <option>Wednesday</option>
-                                <option>Thrusday</option>
-                                <option>Friday</option>
-                                <option>Saturaday</option>
-                                <option>Sunday</option>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td>Which time period are convenient: </td>
-                        <td><select name="TIMEPRERFER">
-                                <option>Morning</option>
-                                <option>Afternoon</option>
-                                <option>Anytime</option>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td>Which gender do you prefer of your own caregiver: </td>
-                        <td><select name="Genderoption">
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>None</option>
-                            </select></td>
-                    </tr>
-                    <tr>
-                        <td>The travel time of the caregiver: </td>
-                        <td><select name="TravelTime">
-                                <option>under 1h</option>
-                                <option>0-2h</option>
-                                <option>Anytime</option>
-                            </select></td>
-                    </tr>
+                    
                     <tr>
                         <td>Email</td>
                         <td><input type="text" name="Email" value="" size="30" placeholder="Enter your email" /></td>

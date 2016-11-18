@@ -12,6 +12,14 @@
         <title>Patient's HomePage</title>
     </head>
     <body>
-        <h1>Welcome Patient's homepage!</h1>
+        <input type="submit" value="update infomation"  onclick='window.location.href="P_Info.jsp"' />
+        <br><br>
+        <input type="submit" value="send a request" onclick='window.location.href="Patient_request.jsp"'/>
+        <br><br>
+        <input type="submit" value="view all request" onclick='window.location.href="Patient_allrequest.jsp"'/>
+        <br><br>
+        <form action="logout.jsp" method="POST">
+            <input type="submit" value="Logout" name="logout">
+        </form>
     </body>
 </html>

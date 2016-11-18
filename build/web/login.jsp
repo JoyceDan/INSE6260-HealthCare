@@ -36,16 +36,22 @@
                     rs = ps.executeQuery();
                     if(rs.next()){
                         
-                        out.println("Welcome,"+rs.getString("Username")+"!!!");
-                        out.println("<br><br> Login!!! ");
+//                        out.println("Welcome,"+rs.getString("Username")+"!!!");
+//                        out.println("<br><br> Login!!! ");
+//                        
+//                        //create a logout button
+//                        out.println("<form action=\"logout.jsp\" method=\"post\">");
+//                        out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
+//                        out.println("</form>");
+//                        
+//                        out.println("<br><br><a href=\"changePassword.jsp?uname="+session.getAttribute("username").toString()+"\"> Change password </a>");
+//                          out.println("<form action=\"Patient_home.jsp\" method=\"post\">");
+//                          out.println("<input type=\"submit\" name=\"welcome\" value=\"welcome\">");
+//                          out.println("</form>");
+                         
+                             response.sendRedirect("Patient_home.jsp");
                         
-                        //create a logout button
-                        out.println("<form action=\"logout.jsp\" method=\"post\">");
-                        out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
-                        out.println("</form>");
-                        
-                        out.println("<br><br><a href=\"changePassword.jsp?uname="+session.getAttribute("username").toString()+"\"> Change password </a>");
-                        
+                          
                     }
                     
                     

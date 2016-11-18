@@ -54,7 +54,6 @@
                                 ps.setString(1, passFP);
                                 ps.setString(2, usernameFP);
                                 ps.executeUpdate();
-                               // out.println("<br> Password Changed Successfully... Please <a herf=\"index.jsp\"> Click Here </a> to login ... <br>");
                                 out.println(" Password Changed Successfully... Please ");
                                 out.println("<a href=\"index.jsp\"> Click Here to login. </a>");
                             }

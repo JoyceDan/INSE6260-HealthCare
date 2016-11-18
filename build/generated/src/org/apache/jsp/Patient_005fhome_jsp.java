@@ -51,7 +51,15 @@ public final class Patient_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        <title>Patient's HomePage</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>Welcome Patient's homepage!</h1>\n");
+      out.write("        <input type=\"submit\" value=\"update infomation\"  onclick='window.location.href=\"P_Info.jsp\"' />\n");
+      out.write("        <br><br>\n");
+      out.write("        <input type=\"submit\" value=\"send a request\" onclick='window.location.href=\"Patient_request.jsp\"'/>\n");
+      out.write("        <br><br>\n");
+      out.write("        <input type=\"submit\" value=\"view all request\" onclick='window.location.href=\"Patient_allrequest.jsp\"'/>\n");
+      out.write("        \n");
+      out.write("        <form action=\"logout.jsp\" method=\"POST\">\n");
+      out.write("            <input type=\"submit\" value=\"Logout\" name=\"logout\">\n");
+      out.write("        </form>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

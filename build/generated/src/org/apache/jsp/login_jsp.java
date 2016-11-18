@@ -79,16 +79,23 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
                     rs = ps.executeQuery();
                     if(rs.next()){
                         
-                        out.println("Welcome,"+rs.getString("Username")+"!!!");
-                        out.println("<br><br> Login!!! ");
-                        
-                        //create a logout button
-                        out.println("<form action=\"logout.jsp\" method=\"post\">");
-                        out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
-                        out.println("</form>");
-                        
-                        out.println("<br><br><a href=\"changePassword.jsp?uname="+session.getAttribute("username").toString()+"\"> Change password </a>");
-                        
+//                        out.println("Welcome,"+rs.getString("Username")+"!!!");
+//                        out.println("<br><br> Login!!! ");
+//                        
+//                        //create a logout button
+//                        out.println("<form action=\"logout.jsp\" method=\"post\">");
+//                        out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
+//                        out.println("</form>");
+//                        
+//                        out.println("<br><br><a href=\"changePassword.jsp?uname="+session.getAttribute("username").toString()+"\"> Change password </a>");
+//                          out.println("<form action=\"Patient_home.jsp\" method=\"post\">");
+//                          out.println("<input type=\"submit\" name=\"welcome\" value=\"welcome\">");
+//                          out.println("</form>");
+                         if("POST".equalsIgnoreCase(request.getMethod()))
+                         {
+                             response.sendRedirect("Patient_home.jsp");
+                         }
+                          
                     }
                     
                     
