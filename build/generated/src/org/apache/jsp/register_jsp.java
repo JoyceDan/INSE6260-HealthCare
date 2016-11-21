@@ -155,7 +155,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <td><select name=\"Identify\">\n");
       out.write("                            <option>Patient</option>\n");
       out.write("                            <option>Nurse</option>\n");
-      out.write("                            <option>Agent</option>\n");
+      out.write("                            \n");
       out.write("                        </select>\n");
       out.write("                    </td>\n");
       out.write("                    </tr>\n");

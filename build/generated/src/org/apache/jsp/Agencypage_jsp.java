@@ -3,8 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.*;
 
-public final class Patient_005fhome_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class Agencypage_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -41,25 +42,36 @@ public final class Patient_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
+      out.write('\n');
+      out.write('\n');
+ Class.forName("com.mysql.jdbc.Driver"); 
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
+      out.write("\n");
+
+    if("POST".equalsIgnoreCase(request.getMethod())){
+    
+    }
+
+
+      out.write("\n");
+      out.write("\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Patient's HomePage</title>\n");
+      out.write("        <title>Agency Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <input type=\"submit\" value=\"update infomation\"  onclick='window.location.href=\"P_Info.jsp\"' />\n");
-      out.write("        <br><br>\n");
-      out.write("        <input type=\"submit\" value=\"send a request\" onclick='window.location.href=\"Patient_request.jsp\"'/>\n");
-      out.write("        <br><br>\n");
-      out.write("        <input type=\"submit\" value=\"view all request\" onclick='window.location.href=\"Patient_allrequest.jsp\"'/>\n");
-      out.write("        <br><br>\n");
-      out.write("        <form action=\"logout.jsp\" method=\"POST\">\n");
-      out.write("            <input type=\"submit\" value=\"Logout\" name=\"logout\">\n");
+      out.write("       sadasd\n");
+      out.write("        <form action=\"\" method=\"POST\">\n");
+      out.write("        <input type=\"submit\" value=\"Display all Request by patients\" name=\"DisplayRequest\" />\n");
       out.write("        </form>\n");
+      out.write("        <br><br>\n");
+      out.write("        <input type=\"submit\" value=\"Display all nurses\" name=\"DisplayNurse\" />\n");
+      out.write("        <br><br>\n");
+      out.write("        <input type=\"submit\" value=\"Run\" name=\"Run\" />\n");
+      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

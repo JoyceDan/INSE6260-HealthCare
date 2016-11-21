@@ -50,8 +50,8 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
 
     if("POST".equalsIgnoreCase(request.getMethod())){
-        if(request.getParameter("register")!=null ){
-            if(request.getParameter("register").equals("Register")){
+        if(request.getParameter("submit")!=null ){
+            if(request.getParameter("submit").equals("Submit")){
                 String username= request.getParameter("Username");
                 String realname= request.getParameter("Realname");
                 String gender= request.getParameter("Gender");
@@ -114,7 +114,7 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </tr>\n");
       out.write("                </tbody>\n");
       out.write("            </table>\n");
-      out.write("\n");
+      out.write("            <input type=\"submit\" value=\"Submit\" name=\"submit\" />\n");
       out.write("        </form>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

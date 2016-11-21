@@ -15,8 +15,8 @@
 
 <%
     if("POST".equalsIgnoreCase(request.getMethod())){
-        if(request.getParameter("register")!=null ){
-            if(request.getParameter("register").equals("Register")){
+        if(request.getParameter("submit")!=null ){
+            if(request.getParameter("submit").equals("Submit")){
                 String username= request.getParameter("Username");
                 String realname= request.getParameter("Realname");
                 String gender= request.getParameter("Gender");
@@ -78,7 +78,7 @@
                     </tr>
                 </tbody>
             </table>
-
+            <input type="submit" value="Submit" name="submit" />
         </form>
     </body>
 </html>
