@@ -6,7 +6,7 @@ import javax.servlet.jsp.*;
 import java.sql.*;
 import java.sql.Connection;
 
-public final class Agencypage_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class AllNursepage_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -57,7 +57,7 @@ public final class Agencypage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("    <head>\n");
-      out.write("        <title>Show Request Page</title>\n");
+      out.write("        <title>Show Nurse Page</title>\n");
       out.write("    </head>\n");
       out.write("    \n");
       out.write("        \n");
@@ -78,7 +78,10 @@ public final class Agencypage_jsp extends org.apache.jasper.runtime.HttpJspBase
                 
                 try{
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                    query = "SELECT * FROM Request";
+//                    query = "SELECT b.AvailabilityID,a.CG_ID,a.CG_Name,a.CG_AvaliableID"
+//                            + "FROM Caregivers a, Availability b"
+//                            + "Where b.AvailabilityID = a.CG_AvaliableID";
+                      query = "SELECT CG_ID,CG_Name,CG_AvaliableID FROM Caregivers ";
                     ps = con.prepareStatement(query);
                     rs = ps.executeQuery();
                     
@@ -89,10 +92,8 @@ public final class Agencypage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<table border=\"1\">\n");
       out.write("    <thead>\n");
       out.write("        <tr bgcolor=\"#DEB887\">\n");
-      out.write("            <th>Request_ID</th>\n");
-      out.write("            <th>Patient ID</th>\n");
-      out.write("            <th>Service_ID</th>\n");
-      out.write("        </tr>\n");
+      out.write("            <th>Caregiver_ID</th>\n");
+      out.write("            <th>Caregiver_Name</th>\n");
       out.write("    </thead>\n");
       out.write("    <tbody>\n");
       out.write("        ");
@@ -100,14 +101,12 @@ public final class Agencypage_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        <tr>\n");
       out.write("            <td>");
-      out.print(rs.getString("Request_ID")  );
+      out.print(rs.getString("CG_ID")  );
       out.write("</td>\n");
       out.write("            <td>");
-      out.print(rs.getString("P_ID") );
+      out.print(rs.getString("CG_Name") );
       out.write("</td>\n");
-      out.write("            <td>");
-      out.print(rs.getString("ServiceID"));
-      out.write("</td>\n");
+      out.write("            \n");
       out.write("        </tr>\n");
       out.write("        ");
  } 

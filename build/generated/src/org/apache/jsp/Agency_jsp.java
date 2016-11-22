@@ -52,60 +52,31 @@ public final class Agency_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
-
-     if("POST".equalsIgnoreCase(request.getMethod())){
-         Connection con= null;
-                PreparedStatement ps;
-                ResultSet rs;
-                String query;
-                
-                try{
-                    Class.forName("com.mysql.jdbc.Driver");
-                }catch(Exception e)
-                {
-                    System.out.println(e);
-                }
-                
-                try{
-                    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                    query = "SELECT * FROM Request";
-                    ps = con.prepareStatement(query);
-                    rs = ps.executeQuery();
-                    
-                    if(rs.next())
-                    {
-                        System.out.println(rs.getString("Request_ID"));
-
-                    }
-                    else{
-                        
-                    }
-                    
-                }catch(SQLException e)
-                {
-                    System.out.println(e);
-                }
-            }
-
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("<html>\n");
+      out.write("\n");
       out.write("    <head>\n");
       out.write("        <title>Agency Page</title>\n");
       out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("<!--        <form method=\"POST\" name=\"form1\" action=Agencypage.jsp> -->\n");
-      out.write("        <form method=\"POST\" name=\"form1\">\n");
+      out.write("    \n");
+      out.write("        <form method=\"POST\" name=\"form1\" action=AllRequestpage.jsp> \n");
+      out.write("        <!--<form method=\"POST\" name=\"form1\">-->\n");
       out.write("        <input type=\"submit\" value=\"Display all Request by patients\" name=\"DisplayRequest\" />\n");
       out.write("        </form>\n");
       out.write("        <br><br>\n");
+      out.write("        <form method=\"POST\" name=\"form2\" action=AllNursepage.jsp> \n");
       out.write("        <input type=\"submit\" value=\"Display all nurses\" name=\"DisplayNurse\" />\n");
+      out.write("        </form>\n");
       out.write("        <br><br>\n");
       out.write("        <input type=\"submit\" value=\"Run\" name=\"Run\" />\n");
       out.write("        \n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("    \n");
+      out.write("\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
