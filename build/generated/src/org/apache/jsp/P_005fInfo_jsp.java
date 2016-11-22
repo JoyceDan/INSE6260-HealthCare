@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.sql.*;
 
 public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -52,15 +53,50 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
     if("POST".equalsIgnoreCase(request.getMethod())){
         if(request.getParameter("submit")!=null ){
             if(request.getParameter("submit").equals("Submit")){
-                String username= request.getParameter("Username");
+                String username= session.getAttribute("username").toString();
                 String realname= request.getParameter("Realname");
                 String gender= request.getParameter("Gender");
                 String age= request.getParameter("Age");
-                String address= request.getParameter("Address");
                 String email= request.getParameter("Email");
-                
-                if((!username.isEmpty())&&(!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!address.isEmpty())&&(!email.isEmpty())){
-                    
+                if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!email.isEmpty())){
+                        Connection con = null;
+                        PreparedStatement ps;
+                        ResultSet rs;
+                        String query;
+                        try
+                        {
+                            Class.forName("com.mysql.jdbc.Driver");
+                        }catch(Exception e)
+                        {
+                            System.out.println(e);
+                        }
+                        
+                        try
+                        {
+                            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
+                                query = "insert into Patient (P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?)";
+                                ps = con.prepareStatement(query);
+//                                ps.setString(1, username);
+                                ps.setString(2, realname);
+                                ps.setString(3, gender);
+                                ps.setString(4, age);
+                                ps.setString(4, email);
+
+                                ps.executeUpdate();
+                                
+                                out.println(" Update Successfully... Please ");
+                                out.println("<a href=\"Patient_home.jsp\"> Click Here to return homepage. </a>");
+                            
+                            
+                        }catch(SQLException e)
+                         {
+                            System.out.println(e);
+                           
+                         }
+                        
+                }
+                else{
+                    out.println("every blank needs to be filled in! Please ");
                 }
             }
             
@@ -75,7 +111,7 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS_style.css\">\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Register Page</title>\n");
+      out.write("        <title>Patient information Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <form action=\"\" method=\"POST\">\n");
@@ -89,7 +125,9 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <tbody>\n");
       out.write("                    <tr>\n");
       out.write("                        <td>Username: </td>\n");
-      out.write("                        <td><input type=\"text\" name=\"Username\" value=\"\" size=\"30\" placeholder=\"Enter your login username\" /></td>\n");
+      out.write("                        <td>");
+ out.println(session.getAttribute("username")); 
+      out.write("</td>\n");
       out.write("                    </tr>\n");
       out.write("                    <tr>\n");
       out.write("                        <td>Real Name: </td>\n");
@@ -102,10 +140,6 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <tr>\n");
       out.write("                        <td>Age: </td>\n");
       out.write("                        <td><input type=\"text\" name=\"Age\" value=\"\" size=\"30\" placeholder=\"Enter your Age\" /></td>\n");
-      out.write("                    </tr>\n");
-      out.write("                    <tr>\n");
-      out.write("                        <td>Address: </td>\n");
-      out.write("                        <td><input type=\"text\" name=\"Address\" value=\"\" size=\"30\" placeholder=\"Enter your Address\" /></td>\n");
       out.write("                    </tr>\n");
       out.write("                    \n");
       out.write("                    <tr>\n");

@@ -79,8 +79,8 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
                     rs = ps.executeQuery();
                     if(rs.next()){
                         
-//                        out.println("Welcome,"+rs.getString("Username")+"!!!");
-//                        out.println("<br><br> Login!!! ");
+                        out.println("Welcome,"+rs.getString("Username")+"!!!");
+                        out.println("<br><br> Login!!! ");
 //                        
 //                        //create a logout button
 //                        out.println("<form action=\"logout.jsp\" method=\"post\">");
@@ -91,10 +91,11 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
 //                          out.println("<form action=\"Patient_home.jsp\" method=\"post\">");
 //                          out.println("<input type=\"submit\" name=\"welcome\" value=\"welcome\">");
 //                          out.println("</form>");
-                         if("POST".equalsIgnoreCase(request.getMethod()))
-                         {
-                             response.sendRedirect("Patient_home.jsp");
-                         }
+                            
+                           
+//                             response.sendRedirect("Patient_home.jsp");
+                           
+                        
                           
                     }
                     
@@ -144,13 +145,20 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
                         //Login sucessful;
                         //creating session;
                         session = request.getSession();
-                        //Start session with the help of attribute ID being unique
+                        //Start session with the help of attribute Username being unique
                         session.setAttribute("username", USERNAME);
-                        response.sendRedirect("login.jsp");
-                        
+                        if(IDENTIFY.equalsIgnoreCase("Patient")){
+                        response.sendRedirect("Patient_home.jsp");
+                        }
+                        else if(IDENTIFY.equalsIgnoreCase("Nurse")){
+                        response.sendRedirect("Nurse_home.jsp");
+                        }
+                        else if(IDENTIFY.equalsIgnoreCase("Agent")){
+                        response.sendRedirect("Agency.jsp");
+                        }
                     }
                     else{
-                        out.println("Invalid Username or Password! Please ");
+                        out.println("Invalid Username or Password or Identify! Please ");
                         out.println("<a href=\"index.jsp\"> Try Again. </a>");
                     }
                     
