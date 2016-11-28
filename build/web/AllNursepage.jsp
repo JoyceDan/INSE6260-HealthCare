@@ -37,14 +37,15 @@
                 }
                 
                 try{
+                    
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
 //                    query = "SELECT b.AvailabilityID,b.Time1,b.Time2,b.Time3,b.Time4,a.CG_ID,a.CG_Name,a.CG_AvaliableID"
 //                            + "FROM Caregivers a, Availability b"
 //                            + "Where b.AvailabilityID = a.CG_AvaliableID";
-                    query = "SELECT Caregivers.CG_ID,Caregivers.CG_Name,Language.Language"
-                            + "FROM Caregivers,Language"
-                            + "WHERE Caregivers.CG_LanguageID = Language.LanguageID";
+                    query = "SELECT Caregivers.CG_ID,Caregivers.CG_Name,Availability.Time1 FROM Caregivers LEFT JOIN Availability ON Caregivers.CG_AvaliableID = Availability.AvailabilityID";
+                     
                     ps = con.prepareStatement(query);
+                  
                     rs = ps.executeQuery();
                     
 //                    if(rs.first())
@@ -55,14 +56,14 @@
         <tr bgcolor="#DEB887">
             <th>Caregiver_ID</th>
             <th>Caregiver_Name</th>
-            <th>Caregiver_9-10am</th>
+            <th>Caregiver_Name</th>
     </thead>
     <tbody>
         <% while (rs.next()) { %>
         <tr>
             <td><%=rs.getString("CG_ID")  %></td>
             <td><%=rs.getString("CG_Name")  %></td>
-            <td><%=rs.getString("Language")  %></td>
+            <td><%=rs.getString("Time1")  %></td>
             
         </tr>
         <% } %>

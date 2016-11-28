@@ -4,11 +4,6 @@
     Author     : DanQiao
 --%>
 
-<%-- 
-    Document   : register
-    Created on : Nov 9, 2016, 3:29:25 PM
-    Author     : DanQiao
---%>
 <%@page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,6 +17,7 @@
                 String gender= request.getParameter("Gender");
                 String age= request.getParameter("Age");
                 String email= request.getParameter("Email");
+//                out.println(username+realname+gender+age+email);
                 if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!email.isEmpty())){
                         Connection con = null;
                         PreparedStatement ps;
@@ -38,13 +34,25 @@
                         try
                         {
                             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                                query = "insert into Patient (P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?)";
+                                
+                                int index = 0;
+                                String maxIDSql="select max(P_ID) as P_ID from Patient";
+                                ps = con.prepareStatement(maxIDSql);
+                                rs = ps.executeQuery();
+                                if(rs.next()){
+                                    index = rs.getInt("P_ID")+1;
+                                }else{
+                                    index = 0;
+                                }
+                                
+                                query = "insert into Patient (P_ID,P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?,?)";
                                 ps = con.prepareStatement(query);
-                                ps.setString(1, username);
-                                ps.setString(2, realname);
-                                ps.setString(3, gender);
-                                ps.setString(4, age);
-                                ps.setString(4, email);
+                                ps.setInt(1, index);
+                                ps.setString(2, username);
+                                ps.setString(3, realname);
+                                ps.setString(4, gender);
+                                ps.setString(5, age);
+                                ps.setString(6, email);
 
                                 ps.executeUpdate();
                                 
@@ -96,7 +104,7 @@
                     </tr>
                     <tr>
                         <td>Gender: </td>
-                        <td><input type="text" name="Gender" value="" size="30" placeholder="Enter your gender" /></td>
+                        <td><input type="text" name="Gender" value="" size="30" placeholder="Male or Female" /></td>
                     </tr>
                     <tr>
                         <td>Age: </td>
@@ -105,7 +113,7 @@
                     
                     <tr>
                         <td>Email</td>
-                        <td><input type="text" name="Email" value="" size="30" placeholder="Enter your email" /></td>
+                        <td><input type="text" name="Email" value="" size="30" placeholder="XXXXX@XXX.com" /></td>
                     </tr>
                 </tbody>
             </table>

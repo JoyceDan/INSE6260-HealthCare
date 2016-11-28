@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.sql.*;
 
-public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class CG_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -46,6 +46,7 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("\n");
 
@@ -56,9 +57,15 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
                 String realname= request.getParameter("Realname");
                 String gender= request.getParameter("Gender");
                 String age= request.getParameter("Age");
+                String city= request.getParameter("City");
                 String email= request.getParameter("Email");
-//                out.println(username+realname+gender+age+email);
-                if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!email.isEmpty())){
+                String english= request.getParameter("English");
+                String chinese= request.getParameter("Chinese");
+                String french= request.getParameter("French");
+                String japanese= request.getParameter("Japanese");
+                
+//                out.println(username+realname+gender+age+email+english+chinese+french+japanese);
+                if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!city.isEmpty())&&(!email.isEmpty())&&(!english.isEmpty())&&(!chinese.isEmpty())&&(!french.isEmpty())&&(!japanese.isEmpty())){
                         Connection con = null;
                         PreparedStatement ps;
                         ResultSet rs;
@@ -76,18 +83,16 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
                             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
                                 
                                 int index = 0;
-                                String maxIDSql="select max(P_ID) as P_ID from Patient";
+                                String maxIDSql="select max(CG_ID) as CG_ID from Caregivers";
                                 ps = con.prepareStatement(maxIDSql);
                                 rs = ps.executeQuery();
                                 if(rs.next()){
-                                    index = rs.getInt("P_ID")+1;
+                                    index = rs.getInt("CG_ID")+1;
                                 }else{
                                     index = 0;
                                 }
                                 
-                                out.println(index);
-                            
-                                query = "insert into Patient (P_ID,P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?,?)";
+                                query = "insert into Caregivers (CG_ID,CG_Username,CG_Name,CG_Gender,CG_Age,CG_ContactEmail,English,Chinese,French,Japanese,CG_Location) values (?,?,?,?,?,?,?,?,?,?,?)";
                                 ps = con.prepareStatement(query);
                                 ps.setInt(1, index);
                                 ps.setString(2, username);
@@ -95,11 +100,19 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
                                 ps.setString(4, gender);
                                 ps.setString(5, age);
                                 ps.setString(6, email);
+                                ps.setString(7, english);
+                                ps.setString(8, chinese);
+                                ps.setString(9, french);
+                                ps.setString(10, japanese);
+                                ps.setString(11, city);
+                                out.println(" test1");
 
                                 ps.executeUpdate();
                                 
+                                out.println(" test2");
+                                
                                 out.println(" Update Successfully... Please ");
-                                out.println("<a href=\"Patient_home.jsp\"> Click Here to return homepage. </a>");
+                                out.println("<a href=\"Nurse_home.jsp\"> Click Here to return homepage. </a>");
                             
                             
                         }catch(SQLException e)
@@ -125,7 +138,7 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"CSS_style.css\">\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Patient information Page</title>\n");
+      out.write("        <title>Caregivers information Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <form action=\"\" method=\"POST\">\n");
@@ -149,7 +162,7 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </tr>\n");
       out.write("                    <tr>\n");
       out.write("                        <td>Gender: </td>\n");
-      out.write("                        <td><input type=\"text\" name=\"Gender\" value=\"\" size=\"30\" placeholder=\"Enter your gender\" /></td>\n");
+      out.write("                        <td><input type=\"text\" name=\"Gender\" value=\"\" size=\"30\" placeholder=\"Male or Female\" /></td>\n");
       out.write("                    </tr>\n");
       out.write("                    <tr>\n");
       out.write("                        <td>Age: </td>\n");
@@ -157,15 +170,46 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </tr>\n");
       out.write("                    \n");
       out.write("                    <tr>\n");
-      out.write("                        <td>Email</td>\n");
-      out.write("                        <td><input type=\"text\" name=\"Email\" value=\"\" size=\"30\" placeholder=\"Enter your email\" /></td>\n");
+      out.write("                        <td>Which city do you live ?: </td>\n");
+      out.write("                        <td><select name=\"City\">\n");
+      out.write("                                <option>Montreal</option>\n");
+      out.write("                                <option>Quebec</option>\n");
+      out.write("                                <option>Lava</option>\n");
+      out.write("                            </select></td>\n");
       out.write("                    </tr>\n");
+      out.write("                    \n");
+      out.write("                    <tr>\n");
+      out.write("                        <td>Email</td>\n");
+      out.write("                        <td><input type=\"text\" name=\"Email\" value=\"\" size=\"30\" placeholder=\"XXXXX@XXX.com\" /></td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    \n");
+      out.write("                    <tr>\n");
+      out.write("                        <td>Language</td>\n");
+      out.write("                        <td>English:<input type=\"checkbox\" name=\"English\" value=\"1\" />Yes <input type=\"checkbox\" name=\"English\" value=\"0\" /> No</td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    \n");
+      out.write("                    <tr>\n");
+      out.write("                        <td></td>\n");
+      out.write("                        <td>Chinese:<input type=\"checkbox\" name=\"Chinese\" value=\"1\" />Yes <input type=\"checkbox\" name=\"Chinese\" value=\"0\" /> No</td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    \n");
+      out.write("                    <tr>\n");
+      out.write("                        <td></td>\n");
+      out.write("                        <td>French:<input type=\"checkbox\" name=\"French\" value=\"1\" />Yes <input type=\"checkbox\" name=\"French\" value=\"0\" /> No</td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    \n");
+      out.write("                    <tr>\n");
+      out.write("                        <td></td>\n");
+      out.write("                        <td>Japanese:<input type=\"checkbox\" name=\"Japanese\" value=\"1\" />Yes <input type=\"checkbox\" name=\"Japanese\" value=\"0\" /> No </td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    \n");
       out.write("                </tbody>\n");
       out.write("            </table>\n");
       out.write("            <input type=\"submit\" value=\"Submit\" name=\"submit\" />\n");
       out.write("        </form>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
+      out.write("\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

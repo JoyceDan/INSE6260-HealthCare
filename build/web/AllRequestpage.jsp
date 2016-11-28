@@ -36,7 +36,7 @@
                 
                 try{
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                    query = "SELECT * FROM Request";
+                    query = "SELECT * FROM Request LEFT JOIN Status ON Request.Request_ID = Status.StatusID";
                     ps = con.prepareStatement(query);
                     rs = ps.executeQuery();
                     
@@ -49,6 +49,7 @@
             <th>Request_ID</th>
             <th>Patient ID</th>
             <th>Service_ID</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -57,6 +58,7 @@
             <td><%=rs.getString("Request_ID")  %></td>
             <td><%=rs.getString("P_ID") %></td>
             <td><%=rs.getString("ServiceID")%></td>
+            <td><%=rs.getString("APPstatus")%></td>
         </tr>
         <% } %>
     </tbody>

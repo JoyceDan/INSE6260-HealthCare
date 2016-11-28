@@ -29,7 +29,7 @@
         <br><br>
         <input type="submit" value="send a request" onclick='window.location.href="SendRequest.jsp"'/>
         <br><br>
-        <input type="submit" value="view all request" onclick='window.location.href="Patient_allrequest.jsp"'/>
+        <input type="submit" value="view all request" onclick='window.location.href="P_allrequest.jsp"'/>
         <br><br>
         <form action="logout.jsp" method="POST">
             <input type="submit" value="Logout" name="logout">
