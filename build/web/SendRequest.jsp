@@ -1,5 +1,5 @@
 <%-- 
-    Document   : register
+    Document   : Patient send a request to the system
     Created on : Nov 9, 2016, 3:29:25 PM
     Author     : DanQiao
 --%>
