@@ -84,11 +84,10 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
                                 }else{
                                     index = 0;
                                 }
-                                
-                                out.println(index);
-                            
+                                out.println(index); 
                                 query = "insert into Patient (P_ID,P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?,?)";
                                 ps = con.prepareStatement(query);
+                                out.println(index); 
                                 ps.setInt(1, index);
                                 ps.setString(2, username);
                                 ps.setString(3, realname);
@@ -149,7 +148,7 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </tr>\n");
       out.write("                    <tr>\n");
       out.write("                        <td>Gender: </td>\n");
-      out.write("                        <td><input type=\"text\" name=\"Gender\" value=\"\" size=\"30\" placeholder=\"Enter your gender\" /></td>\n");
+      out.write("                        <td><input type=\"text\" name=\"Gender\" value=\"\" size=\"30\" placeholder=\"Male or Female\" /></td>\n");
       out.write("                    </tr>\n");
       out.write("                    <tr>\n");
       out.write("                        <td>Age: </td>\n");
@@ -158,7 +157,7 @@ public final class P_005fInfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    \n");
       out.write("                    <tr>\n");
       out.write("                        <td>Email</td>\n");
-      out.write("                        <td><input type=\"text\" name=\"Email\" value=\"\" size=\"30\" placeholder=\"Enter your email\" /></td>\n");
+      out.write("                        <td><input type=\"text\" name=\"Email\" value=\"\" size=\"30\" placeholder=\"XXXXX@XXX.com\" /></td>\n");
       out.write("                    </tr>\n");
       out.write("                </tbody>\n");
       out.write("            </table>\n");

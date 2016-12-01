@@ -43,6 +43,8 @@ public final class AllNursepage_jsp extends org.apache.jasper.runtime.HttpJspBas
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write('\n');
+      out.write('\n');
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -77,12 +79,15 @@ public final class AllNursepage_jsp extends org.apache.jasper.runtime.HttpJspBas
                 }
                 
                 try{
+                    
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-//                    query = "SELECT b.AvailabilityID,a.CG_ID,a.CG_Name,a.CG_AvaliableID"
+//                    query = "SELECT b.AvailabilityID,b.Time1,b.Time2,b.Time3,b.Time4,a.CG_ID,a.CG_Name,a.CG_AvaliableID"
 //                            + "FROM Caregivers a, Availability b"
 //                            + "Where b.AvailabilityID = a.CG_AvaliableID";
-                      query = "SELECT CG_ID,CG_Name,CG_AvaliableID FROM Caregivers ";
+                    query = "SELECT Caregivers.CG_ID,Caregivers.CG_Name,Availability.Time1 FROM Caregivers LEFT JOIN Availability ON Caregivers.CG_AvaliableID = Availability.AvailabilityID";
+                     
                     ps = con.prepareStatement(query);
+                  
                     rs = ps.executeQuery();
                     
 //                    if(rs.first())
@@ -94,6 +99,7 @@ public final class AllNursepage_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("        <tr bgcolor=\"#DEB887\">\n");
       out.write("            <th>Caregiver_ID</th>\n");
       out.write("            <th>Caregiver_Name</th>\n");
+      out.write("            <th>Caregiver_Name</th>\n");
       out.write("    </thead>\n");
       out.write("    <tbody>\n");
       out.write("        ");
@@ -104,7 +110,10 @@ public final class AllNursepage_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.print(rs.getString("CG_ID")  );
       out.write("</td>\n");
       out.write("            <td>");
-      out.print(rs.getString("CG_Name") );
+      out.print(rs.getString("CG_Name")  );
+      out.write("</td>\n");
+      out.write("            <td>");
+      out.print(rs.getString("Time1")  );
       out.write("</td>\n");
       out.write("            \n");
       out.write("        </tr>\n");

@@ -5,7 +5,6 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.sql.*;
 import java.util.Date;
-import java.sql.Connection;
 
 public final class SendRequest_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -48,72 +47,8 @@ public final class SendRequest_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
- Class.forName("com.mysql.jdbc.Driver"); 
-      out.write("\n");
-      out.write("\n");
       out.write(" \n");
       out.write("<!DOCTYPE html>\n");
-      out.write("\n");
-
-        if("POST".equalsIgnoreCase(request.getMethod())){
-            if(request.getParameter("register")!=null ){
-                if(request.getParameter("register").equals("Register")){
-                
-                    String username= request.getParameter("nameReg");
-                    String password= request.getParameter("passReg");
-                    String repassword= request.getParameter("passReg2");
-                    String securityQues= request.getParameter("secReg");
-                    String identify= request.getParameter("Identify");
-                
-                    if((!username.isEmpty())&&(!password.isEmpty())&&(!repassword.isEmpty()&&(!securityQues.isEmpty())&&(!identify.isEmpty() ))   ){
-                        if(password.equals(repassword)){
-                            Connection con= null;
-                            PreparedStatement ps;
-                            ResultSet rs;
-                            String query;
-                        
-                            try{
-                            Class.forName("com.mysql.jdbc.Driver");
-                            }catch(Exception e)
-                            {
-                                System.out.println(e);
-                            }
-
-                            try{
-                                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                                query = "insert into Login (Username,Password,Identify,SecQue) values (?,?,?,?)";
-                                ps = con.prepareStatement(query);
-                                ps.setString(1, username);
-                                ps.setString(2, password);
-                                ps.setString(3, identify);
-                                ps.setString(4, securityQues);
-
-                                ps.executeUpdate();
-
-                                session= request.getSession();
-                                session.setAttribute("username", username);
-                                response.sendRedirect("login.jsp");
-
-                            }catch(SQLException e){
-                                System.out.println(e);
-                            }
-                    
-                        }
-                        else{
-                            out.println("The two password are not match! Please try again.");
-                        }
-                    }
-                    else{
-                        out.println("All the values are not empty! Please try again.");
-                    }
-                }
-            
-            }
-        }
-
-
-      out.write("\n");
-      out.write("\n");
       out.write("\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -122,7 +57,7 @@ public final class SendRequest_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>Send Request Page</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <form action=\"\" method=\"POST\">\n");
+      out.write("        <form name=\"form1\" action=\"sendrequestlog.jsp\" method=\"POST\">     \n");
       out.write("            <table border=\"1\">\n");
       out.write("                <thead>\n");
       out.write("                    <tr>\n");
@@ -132,33 +67,46 @@ public final class SendRequest_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </thead>\n");
       out.write("                <tbody>\n");
       out.write("                    <tr>\n");
-      out.write("                        <td>Ill Type: </td>\n");
-      out.write("                        <td><input type=\"text\" name=\"TypeSR\" value=\"\" size=\"30\" placeholder=\"Enter your illness type\" /></td>\n");
+      out.write("                        <td>Ill type: </td>\n");
+      out.write("                        <td>Blood Test :<input type=\"checkbox\" name=\"BT\" value=\"1\" />Yes <input type=\"checkbox\" name=\"BT\" value=\"0\" /> No</td>\n");
       out.write("                    </tr>\n");
+      out.write("                    \n");
       out.write("                    <tr>\n");
-      out.write("                        <td>Patient ID: </td>\n");
-      out.write("                        <td><input type=\"password\" name=\"passReg\" value=\"\" size=\"30\" placeholder=\"Enter your patientID\" /></td>\n");
+      out.write("                        <td></td>\n");
+      out.write("                        <td>Day Care :<input type=\"checkbox\" name=\"DC\" value=\"1\" />Yes <input type=\"checkbox\" name=\"DC\" value=\"0\" /> No</td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    \n");
+      out.write("                    <tr>\n");
+      out.write("                        <td></td>\n");
+      out.write("                        <td>Blood Pressure :<input type=\"checkbox\" name=\"BP\" value=\"1\" />Yes <input type=\"checkbox\" name=\"BP\" value=\"0\" /> No</td>\n");
+      out.write("                    </tr>\n");
+      out.write("                    \n");
+      out.write("                    <tr>\n");
+      out.write("                        <td>Patient Name: </td>\n");
+      out.write("                        <td>");
+ out.println(session.getAttribute("username")); 
+      out.write("</td>\n");
       out.write("                    </tr>\n");
       out.write("                   \n");
       out.write("                    <tr>\n");
       out.write("                        <td>Time prefer 9-10AM: </td>\n");
-      out.write("                        <td> <input type=\"checkbox\" name=\"time1\" value=\"1\" /></td>\n");
+      out.write("                        <td> <input type=\"checkbox\" name=\"time1\" value=\"1\" />Yes <input type=\"checkbox\" name=\"time1\" value=\"0\" /> No</td>\n");
       out.write("                      \n");
-      out.write("                        </tr>\n");
+      out.write("                    </tr>\n");
       out.write("                    \n");
       out.write("                    <tr>\n");
       out.write("                        <td>Time prefer 11-12AM: </td>\n");
-      out.write("                        <td><input type=\"checkbox\" name=\"time2\" value=\"1\" /></td>\n");
+      out.write("                        <td><input type=\"checkbox\" name=\"time2\" value=\"1\" />Yes <input type=\"checkbox\" name=\"time2\" value=\"0\" /> No</td>\n");
       out.write("                    </tr>\n");
       out.write("                    \n");
       out.write("                    <tr>\n");
       out.write("                        <td>Time prefer 2-3PM</td>\n");
-      out.write("                        <td><input type=\"checkbox\" name=\"time3\" value=\"1\" /></td>\n");
+      out.write("                        <td><input type=\"checkbox\" name=\"time3\" value=\"1\" />Yes <input type=\"checkbox\" name=\"time3\" value=\"0\" /> No</td>\n");
       out.write("                    </tr>\n");
       out.write("                    \n");
       out.write("                    <tr>\n");
-      out.write("                        <td>Time prefer 2-3PM</td>\n");
-      out.write("                        <td><input type=\"checkbox\" name=\"time4\" value=\"1\" /></td>\n");
+      out.write("                        <td>Time prefer 4-5PM</td>\n");
+      out.write("                        <td><input type=\"checkbox\" name=\"time4\" value=\"1\" />Yes <input type=\"checkbox\" name=\"time4\" value=\"0\" /> No</td>\n");
       out.write("                    </tr>\n");
       out.write("                    \n");
       out.write("                    <tr>\n");
@@ -170,7 +118,7 @@ public final class SendRequest_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </tr>\n");
       out.write("                </tbody>\n");
       out.write("            </table>\n");
-      out.write("            <input type=\"submit\" value=\"Register\" name=\"register\" />\n");
+      out.write("            <input type=\"submit\" value=\"Send\" name=\"send\" />\n");
       out.write("        </form>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

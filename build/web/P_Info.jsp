@@ -44,9 +44,9 @@
                                 }else{
                                     index = 0;
                                 }
-                                
                                 query = "insert into Patient (P_ID,P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?,?)";
                                 ps = con.prepareStatement(query);
+                                out.println(index); 
                                 ps.setInt(1, index);
                                 ps.setString(2, username);
                                 ps.setString(3, realname);

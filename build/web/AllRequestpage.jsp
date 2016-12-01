@@ -22,6 +22,7 @@
 
 <%
      if("POST".equalsIgnoreCase(request.getMethod())){
+        
          Connection con= null;
                 PreparedStatement ps;
                 ResultSet rs;
