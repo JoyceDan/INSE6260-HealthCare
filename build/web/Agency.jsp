@@ -28,7 +28,7 @@
         </form>
         <br><br>
         <form method="POST" name="form2" action=run.jsp> 
-        <input type="submit" value="Run" name="Run" />
+        <input type="submit" value="Run" name="run" />
         </form>
         
 
