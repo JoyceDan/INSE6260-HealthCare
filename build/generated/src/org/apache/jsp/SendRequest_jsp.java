@@ -114,6 +114,7 @@ public final class SendRequest_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <td><select name=\"genderP\">\n");
       out.write("                                <option>Male</option>\n");
       out.write("                                <option>Female</option>\n");
+      out.write("                                <option>None</option>\n");
       out.write("                            </select></td>\n");
       out.write("                    </tr>\n");
       out.write("                </tbody>\n");

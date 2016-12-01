@@ -6,7 +6,7 @@ import javax.servlet.jsp.*;
 import java.sql.*;
 import java.sql.Connection;
 
-public final class AllRequestpage_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class P_005fviewReq_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -57,14 +57,14 @@ public final class AllRequestpage_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\n");
       out.write("\n");
       out.write("    <head>\n");
-      out.write("        <title>Show Request Page</title>\n");
+      out.write("        <title>Patient Show Request Page</title>\n");
       out.write("    </head>\n");
       out.write("    \n");
       out.write("        \n");
       out.write("\n");
 
      if("POST".equalsIgnoreCase(request.getMethod())){
-        
+         String username = session.getAttribute("username").toString();
          Connection con= null;
                 PreparedStatement ps;
                 ResultSet rs;
@@ -79,8 +79,10 @@ public final class AllRequestpage_jsp extends org.apache.jasper.runtime.HttpJspB
                 
                 try{
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                    query = "SELECT * FROM Request LEFT JOIN Status ON Request.Request_ID = Status.StatusID";
+                    query = "SELECT * FROM Request LEFT JOIN Status ON Request.StatusID = Status.StatusID AND Username = ?";
+                  
                     ps = con.prepareStatement(query);
+                    ps.setString(1,username);
                     rs = ps.executeQuery();
                     
 //                    if(rs.first())
@@ -108,7 +110,7 @@ public final class AllRequestpage_jsp extends org.apache.jasper.runtime.HttpJspB
       out.print(rs.getString("P_ID") );
       out.write("</td>\n");
       out.write("            <td>");
-      out.print(rs.getString("ServiceID"));
+      out.print(rs.getString("Username"));
       out.write("</td>\n");
       out.write("            <td>");
       out.print(rs.getString("APPstatus"));
@@ -135,11 +137,6 @@ public final class AllRequestpage_jsp extends org.apache.jasper.runtime.HttpJspB
                 }
             }
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("    \n");
-      out.write("\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

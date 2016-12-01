@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 
 <%
-    out.println("sada");
+   
         if("POST".equalsIgnoreCase(request.getMethod())){
             String username= session.getAttribute("username").toString();
-            out.println("sada1");
+           
         if(request.getParameter("send")!=null ){
             if(request.getParameter("send").equals("Send")){
                 
@@ -23,6 +23,7 @@
                     String time3= request.getParameter("time3");
                     String time4= request.getParameter("time4");
                     String gender= request.getParameter("genderP");
+                    
                     if((!bt.isEmpty())&&(!dc.isEmpty())&&(!bp.isEmpty())&&(!time1.isEmpty()&&(!time2.isEmpty())&&(!time3.isEmpty() )&&(!time4.isEmpty() )&&(!gender.isEmpty() ))   ){
                             
                             Connection con= null;
@@ -61,9 +62,8 @@
                                     Requestid = 0;
                                 }
                                 
-                                query = "insert into Request (Request_ID,P_ID,Username,Time1,Time2,Time3,Time4,Gender,BloodTest,DayCare,BloodPressure) values (?,?,?,?,?,?,?,?,?,?,?)";
+                                query = "insert into Request (Request_ID,P_ID,Username,Time1,Time2,Time3,Time4,Gender,BloodTest,DayCare,BloodPressure,StatusID) values (?,?,?,?,?,?,?,?,?,?,?,1)";
                                 ps = con.prepareStatement(query);
-                                out.println("sada2");
                                 ps.setInt(1, Requestid);
                                 ps.setInt(2, index);
                                 ps.setString(3, username);
