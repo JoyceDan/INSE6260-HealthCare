@@ -42,7 +42,7 @@
 //                    query = "SELECT b.AvailabilityID,b.Time1,b.Time2,b.Time3,b.Time4,a.CG_ID,a.CG_Name,a.CG_AvaliableID"
 //                            + "FROM Caregivers a, Availability b"
 //                            + "Where b.AvailabilityID = a.CG_AvaliableID";
-                    query = "SELECT Caregivers.CG_ID,Caregivers.CG_Name,Availability.Time1 FROM Caregivers LEFT JOIN Availability ON Caregivers.CG_AvaliableID = Availability.AvailabilityID";
+                    query = "SELECT * FROM Caregivers";
                      
                     ps = con.prepareStatement(query);
                   
@@ -54,17 +54,37 @@
 <table border="1">
     <thead>
         <tr bgcolor="#DEB887">
-            <th>Caregiver_ID</th>
             <th>Caregiver_Name</th>
-            <th>Caregiver_Name</th>
+            <th>Caregiver_Gender</th>
+            <th>English</th>
+            <th>Chinese</th>
+            <th>French</th>
+            <th>Japanese</th>
+            <th>Blood Test</th>
+            <th>Day Care</th>
+            <th>Blood Pressure</th>
+            <th>9-10AM?</th>
+            <th>11-12AM?</th>
+            <th>2-3PM?</th>
+            <th>4-5PM?</th>
+            
     </thead>
     <tbody>
         <% while (rs.next()) { %>
         <tr>
-            <td><%=rs.getString("CG_ID")  %></td>
             <td><%=rs.getString("CG_Name")  %></td>
+            <td><%=rs.getString("CG_Gender")  %></td>
+            <td><%=rs.getString("English")  %></td>
+            <td><%=rs.getString("Chinese")  %></td>
+            <td><%=rs.getString("French")  %></td>
+            <td><%=rs.getString("Japanese")  %></td>
+            <td><%=rs.getString("BloodTest")  %></td>
+            <td><%=rs.getString("DayCare")  %></td>
+            <td><%=rs.getString("BloodPressure")  %></td>
             <td><%=rs.getString("Time1")  %></td>
-            
+            <td><%=rs.getString("Time2")  %></td>
+            <td><%=rs.getString("Time3")  %></td>
+            <td><%=rs.getString("Time4")  %></td>
         </tr>
         <% } %>
     </tbody>

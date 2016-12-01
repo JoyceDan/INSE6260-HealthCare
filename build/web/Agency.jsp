@@ -27,7 +27,9 @@
         <input type="submit" value="Display all nurses" name="DisplayNurse" />
         </form>
         <br><br>
+        <form method="POST" name="form2" action=run.jsp> 
         <input type="submit" value="Run" name="Run" />
+        </form>
         
 
 

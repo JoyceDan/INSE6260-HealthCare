@@ -37,7 +37,7 @@
                 
                 try{
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                    query = "SELECT * FROM Request LEFT JOIN Status ON Request.Request_ID = Status.StatusID";
+                    query = "SELECT * FROM Request INNER JOIN Status ON Request.StatusID=Status.StatusID";
                     ps = con.prepareStatement(query);
                     rs = ps.executeQuery();
                     
@@ -49,7 +49,15 @@
         <tr bgcolor="#DEB887">
             <th>Request_ID</th>
             <th>Patient ID</th>
-            <th>Service_ID</th>
+            <th>Username</th>
+            <th>9-10AM?</th>
+            <th>11-12AM?</th>
+            <th>2-3PM?</th>
+            <th>4-5PM?</th>
+            <th>Gender</th>
+            <th>Blood Test?</th>
+            <th>Day Care?</th>
+            <th>Blood Pressure</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -58,7 +66,15 @@
         <tr>
             <td><%=rs.getString("Request_ID")  %></td>
             <td><%=rs.getString("P_ID") %></td>
-            <td><%=rs.getString("ServiceID")%></td>
+            <td><%=rs.getString("Username")  %></td>
+            <td><%=rs.getString("Time1") %></td>
+            <td><%=rs.getString("Time2")  %></td>
+            <td><%=rs.getString("Time3") %></td>
+            <td><%=rs.getString("Time4")  %></td>
+            <td><%=rs.getString("Gender") %></td>
+            <td><%=rs.getString("BloodTest")  %></td>
+            <td><%=rs.getString("DayCare") %></td>
+            <td><%=rs.getString("BloodPressure")  %></td>
             <td><%=rs.getString("APPstatus")%></td>
         </tr>
         <% } %>
