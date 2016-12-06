@@ -72,17 +72,16 @@
         <% } %>
     </tbody>
 </table>
+        <form method="POST" action="CG_Info.jsp">
+        <br><br>
+        <input type="submit" value="update CGinfomation" />
+        </form>
+    
         <form action="Nurse_home.jsp">
+            <br><br>
             <input type="submit" value="Return" name="Return" />
         </form>
 <%
-//                        System.out.println(rs.getInt("Request_ID"));
-//                        System.out.println(rs.getString("P_ID"));
-
-//                    }
-//                    else{
-//                        
-//                    }
                     
                 }catch(SQLException e)
                 {

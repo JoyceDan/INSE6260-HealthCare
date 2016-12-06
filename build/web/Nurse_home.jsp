@@ -21,10 +21,6 @@
         <br><br>
         <input type="submit" value="show CGinfomation" />
         </form>
-        <form method="POST" action="CG_Info.jsp">
-        <br><br>
-        <input type="submit" value="update CGinfomation" />
-        </form>
         <form method="POST" action="changeAvaliable.jsp">
         <br><br>
         <input type="submit" value="Change the avalibility"/>

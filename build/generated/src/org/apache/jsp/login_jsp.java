@@ -80,23 +80,10 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
                     if(rs.next()){
                         
                         out.println("Welcome,"+rs.getString("Username")+"!!!");
-                        out.println("<br><br> Login!!! ");
-//                        
-//                        //create a logout button
-//                        out.println("<form action=\"logout.jsp\" method=\"post\">");
-//                        out.println("<input type=\"submit\" name=\"logout\" value=\"Logout\">");
-//                        out.println("</form>");
-//                        
-//                        out.println("<br><br><a href=\"changePassword.jsp?uname="+session.getAttribute("username").toString()+"\"> Change password </a>");
-//                          out.println("<form action=\"Patient_home.jsp\" method=\"post\">");
-//                          out.println("<input type=\"submit\" name=\"welcome\" value=\"welcome\">");
-//                          out.println("</form>");
-                            
-                           
-//                             response.sendRedirect("Patient_home.jsp");
-                           
-                        
-                          
+                        out.println("<br><br> You register sucessfully!!! ");
+                        out.println(" Please ");
+                        out.println("<a href=\"index.jsp\"> Click Here</a>");
+                        out.println(" to login. ");
                     }
                     
                     

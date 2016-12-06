@@ -21,12 +21,15 @@
                 String email= request.getParameter("Email");
                 String english= request.getParameter("English");
                 String french= request.getParameter("French");
+                String bt= request.getParameter("BT");
+                String dc= request.getParameter("DC");
+                String bp= request.getParameter("BP");
                 
-//                out.println(username+realname+gender+age+email+english+chinese+french+japanese);
                 if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!city.isEmpty())&&(!email.isEmpty())&&(!english.isEmpty())&&(!french.isEmpty())){
                         Connection con = null;
                         PreparedStatement ps;
-                        ResultSet rs;
+                        PreparedStatement ps1;
+                        ResultSet rs1;
                         String query;
                         try
                         {
@@ -40,32 +43,43 @@
                         {
                             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
                                 
+//                                int index = 0;
+//                                String maxIDSql="select max(CG_ID) as CG_ID from Caregivers";
+//                                ps = con.prepareStatement(maxIDSql);
+//                                rs = ps.executeQuery();
+//                                if(rs.next()){
+//                                    index = rs.getInt("CG_ID")+1;
+//                                }else{
+//                                    index = 0;
+//                                }
                                 int index = 0;
-                                String maxIDSql="select max(CG_ID) as CG_ID from Caregivers";
-                                ps = con.prepareStatement(maxIDSql);
-                                rs = ps.executeQuery();
-                                if(rs.next()){
-                                    index = rs.getInt("CG_ID")+1;
+                                String IDquery = "select CG_ID from Caregivers where CG_Username=?";
+                                ps1 = con.prepareStatement(IDquery);
+                                ps1.setString(1, username);
+                                rs1 = ps1.executeQuery();
+                                if(rs1.next()){
+                                    index = rs1.getInt("CG_ID");
                                 }else{
-                                    index = 0;
+                                     out.println("Wrong system");
                                 }
                                 
-                                query = "insert into Caregivers (CG_ID,CG_Username,CG_Name,CG_Gender,CG_Age,CG_ContactEmail,English,French,CG_Location) values (?,?,?,?,?,?,?,?,?,?,?)";
+                                
+                                query = "update Caregivers set CG_Name=?,CG_Gender=?,CG_Age=?,CG_ContactEmail=?,English=?,French=?,CG_Location=?,BloodTest=?,DayCare=?,BloodPressure=? where CG_ID=?";
                                 ps = con.prepareStatement(query);
-                                ps.setInt(1, index);
-                                ps.setString(2, username);
-                                ps.setString(3, realname);
-                                ps.setString(4, gender);
-                                ps.setString(5, age);
-                                ps.setString(6, email);
-                                ps.setString(7, english);
-                                ps.setString(8, french);
-                                ps.setString(9, city);
-                                out.println(" test1");
+                                
+                                ps.setString(1, realname);
+                                ps.setString(2, gender);
+                                ps.setString(3, age);
+                                ps.setString(4, email);
+                                ps.setString(5, english);
+                                ps.setString(6, french);
+                                ps.setString(7, city);
+                                ps.setString(8, bt);
+                                ps.setString(9, dc);
+                                ps.setString(10, bp);
+                                ps.setInt(11, index);
 
                                 ps.executeUpdate();
-                                
-                                out.println(" test2");
                                 
                                 out.println(" Update Successfully... Please ");
                                 out.println("<a href=\"Nurse_home.jsp\"> Click Here to return homepage. </a>");
@@ -145,6 +159,20 @@
                     <tr>
                         <td></td>
                         <td>French:<input type="checkbox" name="French" value="1" />Yes <input type="checkbox" name="French" value="0" /> No</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Type</td>
+                        <td>Blood Test:<input type="checkbox" name="BT" value="1" />Yes <input type="checkbox" name="BT" value="0" /> No</td>
+                    </tr>
+                    
+                    <tr>
+                        <td></td>
+                        <td>Day Care:<input type="checkbox" name="DC" value="1" />Yes <input type="checkbox" name="DC" value="0" /> No</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Blood Pressure:<input type="checkbox" name="BP" value="1" />Yes <input type="checkbox" name="BP" value="0" /> No</td>
                     </tr>
                     
                    
