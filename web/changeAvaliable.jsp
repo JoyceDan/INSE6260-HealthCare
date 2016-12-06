@@ -94,7 +94,9 @@
                 </tbody>
             </table>
             <input type="submit" value="Submit" name="submit" />
-
+        </form>
+        <form action="Nurse_home.jsp">
+            <input type="submit" value="Return" name="Return" />
         </form>
     </body>
 </html>

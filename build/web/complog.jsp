@@ -56,12 +56,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Nurse cancel Page</title>
+        <title>Nurse complete job Page</title>
     </head>
     <body>
         <h1>Are you sure to Completed this appointment???</h1>
         <form name="Yes" method="POST">
         <input type="submit" value="Yes" name="yes" />
+        </form>
+        <form action="Nurse_home.jsp">
+            <input type="submit" value="Return the home page" name="Return" />
         </form>
     </body>
 </html>

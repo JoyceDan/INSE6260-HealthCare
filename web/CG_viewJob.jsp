@@ -112,8 +112,9 @@
             <td><%=rs1.getString("Request_ID")  %></td>
             <td><%=b%></td>
             <td>
-                <form action="cancellog.jsp" method="POST">
+                <form action="cancellog.jsp" method="GET">
                 <input type="submit" value="Cancel" name="cancel" />
+                <input type="hidden" name= "button1" value=<%=idn%> />
                 </form>
             </td>
             <td>
@@ -127,6 +128,9 @@
         <% } %>
     </tbody>
 </table>
+    <form action="Nurse_home.jsp">
+            <input type="submit" value="Return" name="Return" />
+        </form>
 
 <%
 //                        System.out.println(rs.getInt("Request_ID"));
