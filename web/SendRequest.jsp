@@ -78,5 +78,8 @@
             </table>
             <input type="submit" value="Send" name="send" />
         </form>
+                    <form action="Patient_home.jsp">
+            <input type="submit" value="Return" name="Return" />
+        </form>
     </body>
 </html>

@@ -23,6 +23,9 @@
                         PreparedStatement ps;
                         ResultSet rs;
                         String query;
+                        PreparedStatement ps1;
+                        ResultSet rs1;
+                        String query2;
                         try
                         {
                             Class.forName("com.mysql.jdbc.Driver");
@@ -35,24 +38,36 @@
                         {
                             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
                                 
+//                                int index = 0;
+//                                String maxIDSql="select max(P_ID) as P_ID from Patient";
+//                                ps = con.prepareStatement(maxIDSql);
+//                                rs = ps.executeQuery();
+//                                if(rs.next()){
+//                                    index = rs.getInt("P_ID")+1;
+//                                }else{
+//                                    index = 0;
+//                                }
+//                                query = "insert into Patient (P_ID,P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?,?)";
                                 int index = 0;
-                                String maxIDSql="select max(P_ID) as P_ID from Patient";
-                                ps = con.prepareStatement(maxIDSql);
-                                rs = ps.executeQuery();
-                                if(rs.next()){
-                                    index = rs.getInt("P_ID")+1;
+                                query2 = "select P_ID from Patient where P_Username=?";
+                                ps1 = con.prepareStatement(query2);
+                                ps1.setString(1, username);
+                                rs1 = ps1.executeQuery();
+                                if(rs1.next()){
+                                    index = rs1.getInt("P_ID");
                                 }else{
-                                    index = 0;
+                                     out.println("Wrong system");
                                 }
-                                query = "insert into Patient (P_ID,P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?,?)";
+                                out.println("Test2");
+                                out.println(index);
+
+                                query = "update Patient set P_Name=?,P_Gender=?,P_Age=?,P_Email=? where P_ID=?";
                                 ps = con.prepareStatement(query);
-                                out.println(index); 
-                                ps.setInt(1, index);
-                                ps.setString(2, username);
-                                ps.setString(3, realname);
-                                ps.setString(4, gender);
-                                ps.setString(5, age);
-                                ps.setString(6, email);
+                                ps.setString(1, realname);
+                                ps.setString(2, gender);
+                                ps.setString(3, age);
+                                ps.setString(4, email);
+                                ps.setInt(5,index);
 
                                 ps.executeUpdate();
                                 
@@ -118,6 +133,9 @@
                 </tbody>
             </table>
             <input type="submit" value="Submit" name="submit" />
+        </form>
+                    <form action="Patient_home.jsp">
+            <input type="submit" value="Return" name="Return" />
         </form>
     </body>
 </html>

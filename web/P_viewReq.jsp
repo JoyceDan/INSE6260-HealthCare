@@ -79,6 +79,7 @@
              String a = rs.getString("BloodTest");
              String b = rs.getString("DayCare");
              String c = rs.getString("BloodPressure");
+             String idn = rs.getString("Request_ID");
             if(a.equalsIgnoreCase("1"))
                  {
                     flaga = "BloodTest";
@@ -128,6 +129,13 @@
             <td><%=rs.getString("Gender") %></td>
             <td><%=flaga%></td>
             <td><%=rs.getString("APPstatus")%></td>
+            <td>Option</td>
+            <td>
+                <form action="cancellog_P.jsp" method="GET">
+                <input type="submit" value="Cancel" name="cancel" />
+                <input type="hidden" name= "button1" value=<%=idn%> />
+                </form>
+            </td>
         </tr>
         <% } %>
     </tbody>

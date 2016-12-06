@@ -27,7 +27,7 @@
         
 
 <%
-//     out.println("Welcome,"+session.getAttribute("username")+"!!!");
+    
      if("POST".equalsIgnoreCase(request.getMethod())){
          String username= session.getAttribute("username").toString();
          Connection con= null;
@@ -76,6 +76,15 @@
         <% } %>
     </tbody>
 </table>
+    <form method="POST" action="P_Info.jsp">
+        <br><br>
+        <input type="submit" value="update infomation" />
+    </form>
+    
+    <form action="Patient_home.jsp">
+        <br><br>
+            <input type="submit" value="Return" name="Return" />
+    </form>
 
 <%
 //                        System.out.println(rs.getInt("Request_ID"));

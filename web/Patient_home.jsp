@@ -20,10 +20,7 @@
         <br><br>
         <input type="submit" value="show infomation" />
         </form>
-        <form method="POST" action="P_Info.jsp">
-        <br><br>
-        <input type="submit" value="update infomation" />
-        </form>
+        
         <br><br>
         <input type="submit" value="Add the address" onclick='window.location.href="P_Address.jsp"'/>
         <br><br>

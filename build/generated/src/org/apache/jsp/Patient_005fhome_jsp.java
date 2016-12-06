@@ -61,10 +61,7 @@ public final class Patient_005fhome_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        <br><br>\n");
       out.write("        <input type=\"submit\" value=\"show infomation\" />\n");
       out.write("        </form>\n");
-      out.write("        <form method=\"POST\" action=\"P_Info.jsp\">\n");
-      out.write("        <br><br>\n");
-      out.write("        <input type=\"submit\" value=\"update infomation\" />\n");
-      out.write("        </form>\n");
+      out.write("        \n");
       out.write("        <br><br>\n");
       out.write("        <input type=\"submit\" value=\"Add the address\" onclick='window.location.href=\"P_Address.jsp\"'/>\n");
       out.write("        <br><br>\n");
