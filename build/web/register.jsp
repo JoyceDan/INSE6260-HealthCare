@@ -26,18 +26,19 @@
                         if(password.equals(repassword)){
                             Connection con= null;
                             PreparedStatement ps;
-                            ResultSet rs;
                             String query;
                             PreparedStatement ps1;
                             PreparedStatement ps2;
                              ResultSet rs2;
-                            ResultSet rs1;
                             String query1;
                             PreparedStatement ps3;
                             ResultSet rs3;
                             String query3;
                             PreparedStatement ps4;
-                            ResultSet rs4;
+                            String query5;
+                            PreparedStatement ps5;
+                             PreparedStatement ps6;
+                             ResultSet rs6;
                         
                             try{
                             Class.forName("com.mysql.jdbc.Driver");
@@ -82,6 +83,27 @@
                                     ps1.setString(6, "unknown");
                                     ps1.executeUpdate();
                                     
+                                    int indexAP = 0;
+                                    String maxIDSqlAP="select max(AddressID) as AddressID from Address";
+                                    ps6 = con.prepareStatement(maxIDSqlAP);
+                                    rs6 = ps6.executeQuery();
+                                    if(rs6.next()){
+                                        indexAP = rs6.getInt("AddressID")+1;
+                                    }else{
+                                        indexAP = 1;
+                                    }
+                                    
+                                    query5 = "insert into Address (AddressID,P_ID,Line1,Line2,City,PostCode) values (?,?,?,?,?,?)";
+                                    ps5 = con.prepareStatement(query5);
+                                    ps5.setInt(1, indexAP);
+                                    ps5.setInt(2, index);
+                                    ps5.setString(3, "unknown");
+                                    ps5.setString(4, "unknown");
+                                    ps5.setString(5, "unknown");
+                                    ps5.setString(6, "unknown");
+//                                    out.println("test address");
+//                                    out.println(indexAP+index);
+                                    ps5.executeUpdate();
                                 }else{
                                     int index1 = 0;
                                     String maxIDSql1="select max(CG_ID) as CG_ID from Caregivers";

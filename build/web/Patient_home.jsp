@@ -20,15 +20,16 @@
         <br><br>
         <input type="submit" value="show infomation" />
         </form>
-        
+        <form method="POST" action="P_showAddr.jsp">
         <br><br>
-        <input type="submit" value="Add the address" onclick='window.location.href="P_Address.jsp"'/>
+        <input type="submit" value="View/Update address" />
+        </form>
         <br><br>
         <input type="submit" value="send a request" onclick='window.location.href="SendRequest.jsp"'/>
         
         <form method="POST" action="P_viewReq.jsp">
         <br><br>
-        <input type="submit" value="view all request" onclick='window.location.href="P_viewReq.jsp"'/>
+        <input type="submit" value="view all request" />
         </form>
         <br><br>
         <form action="logout.jsp" method="POST">

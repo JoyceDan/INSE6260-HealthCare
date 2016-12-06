@@ -1,24 +1,19 @@
 <%-- 
-    Document   : P_showInfo
-    Created on : Nov 22, 2016, 12:24:49 AM
+    Document   : P_showAddr
+    Created on : Dec 6, 2016, 4:03:12 PM
     Author     : DanQiao
 --%>
 
+
+
 <%@page import="java.sql.*" %>
-<%@page import="java.sql.Connection"%>
-<% Class.forName("com.mysql.jdbc.Driver"); %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 
-
-
-
     <head>
-        <title>Show Info Page</title>
+        <title>Show Address Page</title>
     </head>
-    
-        
 
 <%
     
@@ -27,8 +22,9 @@
          Connection con= null;
                 PreparedStatement ps;
                 ResultSet rs;
+                PreparedStatement ps1;
+                ResultSet rs1;
                 String query;
-                out.println("Welcome!!!");
                 
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
@@ -39,9 +35,21 @@
                 
                 try{
                     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                    query = "SELECT * FROM Patient WHERE P_Username=?";
+                    
+                    int index = 0;
+                    String Sql="select P_ID from Patient WHERE P_Username=?";
+                    ps1 = con.prepareStatement(Sql);
+                    ps1.setString(1,username);
+                    rs1 = ps1.executeQuery();
+                    if(rs1.next()){
+                        index = rs1.getInt("P_ID");
+                    }else{
+                        out.println("No this Patient! Please confirm that you have already fill in the infomation in this system.");
+                        }
+                    
+                    query = "SELECT Line1,Line2,City,PostCode FROM Address WHERE P_ID=?";
                     ps = con.prepareStatement(query);
-                    ps.setString(1,username);
+                    ps.setInt(1,index);
                     rs = ps.executeQuery();
 //                    if(rs.first())
 //                    {
@@ -49,30 +57,28 @@
 <table border="1">
     <thead>
         <tr bgcolor="#DEB887">
-            <th>Patient ID</th>
             <th>Username</th>
-            <th>Realname</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Email</th>
+            <th>Apartment number</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Postcode</th>
         </tr>
     </thead>
     <tbody>
         <% while (rs.next()) { %>
         <tr>
-            <td><%=rs.getString("P_ID")  %></td>
-            <td><%=rs.getString("P_Username") %></td>
-            <td><%=rs.getString("P_Name")%></td>
-            <td><%=rs.getString("P_Gender")  %></td>
-            <td><%=rs.getString("P_Age") %></td>
-            <td><%=rs.getString("P_Email")%></td>
+            <td><%=username%></td>
+            <td><%=rs.getString("Line1")%></td>
+            <td><%=rs.getString("Line2")%></td>
+            <td><%=rs.getString("City")%></td>
+            <td><%=rs.getString("PostCode")%></td>
         </tr>
         <% } %>
     </tbody>
 </table>
-    <form method="POST" action="P_Info.jsp">
+    <form method="POST" action="P_Address.jsp">
         <br><br>
-        <input type="submit" value="update infomation" />
+        <input type="submit" value="update your address" />
     </form>
     
     <form action="Patient_home.jsp">
@@ -95,8 +101,3 @@
                 }
             }
 %>
-
-
-    
-
-
