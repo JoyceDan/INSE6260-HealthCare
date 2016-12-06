@@ -40,7 +40,7 @@
                             ps.setString(4, time4);
                             ps.setString(5, username);
                             ps.executeUpdate();
-                            out.println(" Update Successfully... Please ");
+                            out.println(" Update Successfully... ");
                         }catch(SQLException e)
                          {
                             System.out.println(e);

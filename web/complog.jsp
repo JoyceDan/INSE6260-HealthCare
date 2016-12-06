@@ -10,13 +10,14 @@
 <%
     if("POST".equalsIgnoreCase(request.getMethod())){
         String submitid = (String)request.getParameter("button");
-        out.println(submitid);
+       
         if(request.getParameter("yes")!=null ){
             if(request.getParameter("yes").equals("Yes")){
                 Connection con = null;
                     PreparedStatement ps;
-                    ResultSet rs;
                     String query;
+                    PreparedStatement ps1;
+                    String query1;
                     try
                     {
                         Class.forName("com.mysql.jdbc.Driver");
@@ -27,11 +28,19 @@
                     try
                         {
                             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-//                            query = "update Appointments set StatusID=1 where CG_Username=?";
-//                            ps = con.prepareStatement(query);
-//                            
-//                            ps.executeUpdate();
-//                            out.println(" Update Successfully... Please ");
+                            query = "update Appointments set StatusID=4 where Request_ID=?";
+                            ps = con.prepareStatement(query);
+                            ps.setString(1, submitid);
+                            ps.executeUpdate();
+                            
+                            query1 = "update Request set StatusID=4 where Request_ID=?";
+                            ps1 = con.prepareStatement(query1);
+                            ps1.setString(1, submitid);
+                            ps1.executeUpdate();
+                            
+                            out.println(" Change Successfully... Please");
+                            out.println("<a href=\"Nurse_home.jsp\"> Click here</a>");
+                            out.println(" to return nurse home page.");
                         }catch(SQLException e)
                          {
                             System.out.println(e);

@@ -74,8 +74,10 @@
     <tbody>
         <% while (rs1.next()) {
             String a = "";
+            String b = "";
             String time = rs1.getString("Final_Time");
             String idn = rs1.getString("Request_ID");
+            String status = rs1.getString("StatusID");
 //            session = request.getSession();
 //            session.setAttribute("submitid", idn);
             
@@ -91,12 +93,24 @@
             if(time.endsWith("9")){
                 a = "4-5PM";
             }
+            if(status.equalsIgnoreCase("1")){
+                b = "Submitted";
+            }
+            if(status.equalsIgnoreCase("2")){
+                b = "Allocated";
+            }
+            if(status.equalsIgnoreCase("3")){
+                b = "Cancelled";
+            }
+            if(status.equalsIgnoreCase("4")){
+                b = "Completed";
+            }
         %>
         <tr>
             <td><%=rs1.getString("AppointmentID")  %></td>
             <td><%=a%></td>
             <td><%=rs1.getString("Request_ID")  %></td>
-            <td>Allocated</td>
+            <td><%=b%></td>
             <td>
                 <form action="cancellog.jsp" method="POST">
                 <input type="submit" value="Cancel" name="cancel" />
