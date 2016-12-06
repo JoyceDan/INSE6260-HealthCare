@@ -25,10 +25,14 @@
         <br><br>
         <input type="submit" value="update CGinfomation" />
         </form>
+        <form method="POST" action="changeAvaliable.jsp">
         <br><br>
         <input type="submit" value="Change the avalibility"/>
+        </form>
+        <form method="POST" action="CG_viewJob.jsp">
         <br><br>
         <input type="submit" value="view all Work"/>
+        </form>
         <br><br>
         <form action="logout.jsp" method="POST">
             <input type="submit" value="Logout" name="logout">

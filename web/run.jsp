@@ -18,9 +18,12 @@
                         ResultSet rs;
                         PreparedStatement ps2;
                         ResultSet rs2;
-                        ResultSet rs3;
                         PreparedStatement ps4;
                         ResultSet rs4;
+                        PreparedStatement ps5;
+                        PreparedStatement ps6;
+                        PreparedStatement ps7;
+                        ResultSet rs7;
                         String query;
                         try
                         {
@@ -44,7 +47,7 @@
                                 }else{
                                     index = 0;
                                 }
-                                out.println(index);
+//                                out.println(index);
                                 
                                 int indexN = 0;
                                 String maxIDSqlN="select max(CG_ID) as CG_ID from Caregivers";
@@ -55,60 +58,88 @@
                                 }else{
                                     indexN = 0;
                                 }
-                                out.println(indexN);
+//                                out.println(indexN);
                                 
                                 
                                 query = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,Gender,Request_ID, (Time1+Time2+Time3+Time4) AS Request_Flex from Request Order by Request_Flex";
-                                String query1 = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,CG_Gender,CG_ID, (Time1+Time2+Time3+Time4) AS Caregivers_Flex from Caregivers Order by Caregivers_Flex DESC";
                                 ps = con.prepareStatement(query);
-                                ps2 = con.prepareStatement(query1);
+                                
                                 rs = ps.executeQuery();
-                                rs2 = ps2.executeQuery();
+                                
                                 
                                 while (rs.next()){
-                                    int i=0;
-                                    
+                                    out.println("Next Request:"+rs.getString("Request_ID"));
+                                    String query1 = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,CG_Gender,CG_ID, (Time1+Time2+Time3+Time4) AS Caregivers_Flex from Caregivers Order by Caregivers_Flex DESC";
+                                    ps2 = con.prepareStatement(query1);
+                                    rs2 = ps2.executeQuery();
+//                                        rs2.first();
                                         while (rs2.next()){
-                                            
+                                            out.println(" Nurse: "+rs2.getString("CG_ID"));
                                             if (((rs.getString("BloodTest").equalsIgnoreCase("1"))&&(rs2.getString("BloodTest").equalsIgnoreCase("1")))||((rs.getString("DayCare").equalsIgnoreCase("1"))&&(rs2.getString("DayCare").equalsIgnoreCase("1")))||((rs.getString("BloodPressure").equalsIgnoreCase("1"))&&(rs2.getString("BloodPressure").equalsIgnoreCase("1"))))
                                             {
                                                 if(rs.getString("Time1").equalsIgnoreCase("1")&&rs2.getString("Time1").equalsIgnoreCase("1"))
                                                 {
-                                                    if((rs.getString("English").equalsIgnoreCase("1")&&rs2.getString("English").equalsIgnoreCase("1")) || (rs.getString("French").equalsIgnoreCase("1")&&rs2.getString("French").equalsIgnoreCase("1")))
+                                                    if(rs.getString("Gender").equalsIgnoreCase("Male")&&rs2.getString("CG_Gender").equalsIgnoreCase("Male")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("Female"))
                                                     {
                                                     
-                                                        int indexID = 0;
-                                                        String maxSql="select max(AppointmentID) as AppointmentID from Appointments";
-                                                        ps4 = con.prepareStatement(maxSql);
-                                                        rs4 = ps4.executeQuery();
-                                                        if(rs4.next()){
-                                                            indexID = rs4.getInt("AppointmentID")+1;
-                                                        }else{
-                                                            indexID = 0;
+                                                    
+                                                        if((rs.getString("English").equalsIgnoreCase("1")&&rs2.getString("English").equalsIgnoreCase("1")) || (rs.getString("French").equalsIgnoreCase("1")&&rs2.getString("French").equalsIgnoreCase("1")))
+                                                        {
+
+                                                            int indexID = 0;
+                                                            String maxSql="select max(AppointmentID) as AppointmentID from Appointments";
+                                                            ps4 = con.prepareStatement(maxSql);
+                                                            rs4 = ps4.executeQuery();
+                                                            if(rs4.next()){
+                                                                indexID = rs4.getInt("AppointmentID")+1;
+                                                            }else{
+                                                                indexID = 0;
+                                                            }
+
+                                                            out.println(" APP_ID:"+indexID);
+
+                                                            String id = rs.getString("Request_ID").toString();
+                                                            String idn = rs2.getString("CG_ID").toString();
+
+                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
+
+                                                            String query2 = "insert into Appointments (AppointmentID,Final_Time,Request_ID,NurseID,StatusID) values (?,9,?,?,2)";
+
+
+                                                            ps3 = con.prepareStatement(query2);
+                                                            ps3.setInt(1, indexID);
+                                                            ps3.setString(2, id);
+                                                            ps3.setString(3, idn);
+
+                                                            ps3.executeUpdate();
+
+                                                            String query3 = "update Request set StatusID = '2' where Request_ID= ?";
+                                                            ps5 = con.prepareStatement(query3);
+                                                            ps5.setString(1, id);
+                                                            ps5.executeUpdate();
+
+                                                            String query4= "update Caregivers set Time1 = '0' where CG_ID= ?";
+                                                            ps6 = con.prepareStatement(query4);
+                                                            ps6.setString(1, idn);
+                                                            ps6.executeUpdate();
+
+    //                                                        String maxSql0="select Time1 from Caregivers";
+    //                                                        ps7 = con.prepareStatement(maxSql0);
+    //                                                        rs7 = ps7.executeQuery();
+    //                                                        
+    //                                                        out.println(" Time1="+rs7.getString("Time1"));
+                                                            out.println(" Confirm ");
+                                                            break;
+
                                                         }
-                                                        
-                                                        out.println(indexID);
-                                                        
-                                                        String id = rs.getString("Request_ID").toString();
-                                                        String idn = rs2.getString("CG_ID").toString();
-                                                        
-                                                        out.println(id+idn);
-                                                        
-                                                        String query2 = "insert into Appointments (AppointmentID,Final_Time,Request_ID,NurseID,StatusID) values (?,9,?,?,2)";
-                                                        
-                                                        
-                                                        ps3 = con.prepareStatement(query2);
-                                                        ps3.setInt(1, indexID);
-                                                        ps3.setString(2, id);
-                                                        ps3.setString(3, idn);
-                                                        
-                                                        ps3.executeUpdate();
-                                                        break;
-                                                        
+//                                                    out.println(" language is not match! "+" < br> ");
                                                     }
                                                 }
+//                                                out.println(" Time1 is not match! "+" < br> ");
                                             }
+                                            
                                             else{
+//                                                out.println(" Type is not match, change to next nurse! "+" < br> ");
                                                 continue;
                                             }
                                         }

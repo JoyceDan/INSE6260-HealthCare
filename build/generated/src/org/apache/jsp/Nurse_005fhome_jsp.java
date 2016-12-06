@@ -66,10 +66,14 @@ public final class Nurse_005fhome_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("        <br><br>\n");
       out.write("        <input type=\"submit\" value=\"update CGinfomation\" />\n");
       out.write("        </form>\n");
+      out.write("        <form method=\"POST\" action=\"changeAvaliable.jsp\">\n");
       out.write("        <br><br>\n");
       out.write("        <input type=\"submit\" value=\"Change the avalibility\"/>\n");
+      out.write("        </form>\n");
+      out.write("        <form method=\"POST\" action=\"CG_viewJob.jsp\">\n");
       out.write("        <br><br>\n");
       out.write("        <input type=\"submit\" value=\"view all Work\"/>\n");
+      out.write("        </form>\n");
       out.write("        <br><br>\n");
       out.write("        <form action=\"logout.jsp\" method=\"POST\">\n");
       out.write("            <input type=\"submit\" value=\"Logout\" name=\"logout\">\n");

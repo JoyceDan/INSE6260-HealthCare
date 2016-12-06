@@ -20,12 +20,10 @@
                 String city= request.getParameter("City");
                 String email= request.getParameter("Email");
                 String english= request.getParameter("English");
-                String chinese= request.getParameter("Chinese");
                 String french= request.getParameter("French");
-                String japanese= request.getParameter("Japanese");
                 
 //                out.println(username+realname+gender+age+email+english+chinese+french+japanese);
-                if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!city.isEmpty())&&(!email.isEmpty())&&(!english.isEmpty())&&(!chinese.isEmpty())&&(!french.isEmpty())&&(!japanese.isEmpty())){
+                if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!city.isEmpty())&&(!email.isEmpty())&&(!english.isEmpty())&&(!french.isEmpty())){
                         Connection con = null;
                         PreparedStatement ps;
                         ResultSet rs;
@@ -52,7 +50,7 @@
                                     index = 0;
                                 }
                                 
-                                query = "insert into Caregivers (CG_ID,CG_Username,CG_Name,CG_Gender,CG_Age,CG_ContactEmail,English,Chinese,French,Japanese,CG_Location) values (?,?,?,?,?,?,?,?,?,?,?)";
+                                query = "insert into Caregivers (CG_ID,CG_Username,CG_Name,CG_Gender,CG_Age,CG_ContactEmail,English,French,CG_Location) values (?,?,?,?,?,?,?,?,?,?,?)";
                                 ps = con.prepareStatement(query);
                                 ps.setInt(1, index);
                                 ps.setString(2, username);
@@ -61,10 +59,8 @@
                                 ps.setString(5, age);
                                 ps.setString(6, email);
                                 ps.setString(7, english);
-                                ps.setString(8, chinese);
-                                ps.setString(9, french);
-                                ps.setString(10, japanese);
-                                ps.setString(11, city);
+                                ps.setString(8, french);
+                                ps.setString(9, city);
                                 out.println(" test1");
 
                                 ps.executeUpdate();
@@ -145,20 +141,13 @@
                         <td>English:<input type="checkbox" name="English" value="1" />Yes <input type="checkbox" name="English" value="0" /> No</td>
                     </tr>
                     
-                    <tr>
-                        <td></td>
-                        <td>Chinese:<input type="checkbox" name="Chinese" value="1" />Yes <input type="checkbox" name="Chinese" value="0" /> No</td>
-                    </tr>
                     
                     <tr>
                         <td></td>
                         <td>French:<input type="checkbox" name="French" value="1" />Yes <input type="checkbox" name="French" value="0" /> No</td>
                     </tr>
                     
-                    <tr>
-                        <td></td>
-                        <td>Japanese:<input type="checkbox" name="Japanese" value="1" />Yes <input type="checkbox" name="Japanese" value="0" /> No </td>
-                    </tr>
+                   
                     
                 </tbody>
             </table>
