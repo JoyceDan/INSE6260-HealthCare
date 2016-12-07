@@ -57,9 +57,7 @@
             <th>Caregiver_Name</th>
             <th>Caregiver_Gender</th>
             <th>English</th>
-            <th>Chinese</th>
             <th>French</th>
-            <th>Japanese</th>
             <th>Blood Test</th>
             <th>Day Care</th>
             <th>Blood Pressure</th>
@@ -75,9 +73,7 @@
             <td><%=rs.getString("CG_Name")  %></td>
             <td><%=rs.getString("CG_Gender")  %></td>
             <td><%=rs.getString("English")  %></td>
-            <td><%=rs.getString("Chinese")  %></td>
             <td><%=rs.getString("French")  %></td>
-            <td><%=rs.getString("Japanese")  %></td>
             <td><%=rs.getString("BloodTest")  %></td>
             <td><%=rs.getString("DayCare")  %></td>
             <td><%=rs.getString("BloodPressure")  %></td>

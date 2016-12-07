@@ -1,13 +1,53 @@
-<%-- 
-    Document   : run
-    Created on : Dec 1, 2016, 2:59:36 PM
-    Author     : DanQiao
---%>
-<%@page import="java.sql.*" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+package org.apache.jsp;
 
-<%
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import java.sql.*;
+
+public final class run_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List<String> _jspx_dependants;
+
+  private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
+
+  public java.util.List<String> getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+    try {
+      response.setContentType("text/html;charset=UTF-8");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+      _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("\n");
+
     if("POST".equalsIgnoreCase(request.getMethod())){
         if(request.getParameter("run")!=null ){
             if(request.getParameter("run").equals("Run")){
@@ -68,36 +108,20 @@
                                 query = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,Gender,Request_ID, (Time1+Time2+Time3+Time4) AS Request_Flex from Request Order by Request_Flex";
                                 ps = con.prepareStatement(query);
                                 rs = ps.executeQuery();
-                                int i=1;
-                                for(i=1;i<=indexN;i++){
-                                    String shit = "update Caregivers set Caregivers_Flex = (Time1+Time2+Time3+Time4) Where CG_ID=?";
-                                    ps11 = con.prepareStatement(shit);
-                                    ps11.setInt(1, i);
-                                    ps11.executeUpdate();
-                                    out.println(i);
-                                }
                                 boolean flag = true;
                                 while (rs.next()){
                                     out.println("Next Request:"+rs.getString("Request_ID"));
-                                    
-//                                    if(flag){
-//                                    String query1 = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,CG_Gender,CG_ID, (Time1+Time2+Time3+Time4) AS Caregivers_Flex from Caregivers Order by Caregivers_Flex DESC";
-//                                    ps2 = con.prepareStatement(query1);
-//                                    rs2 = ps2.executeQuery();
-////                                    String flagsql = "update Caregivers set ";
-//
-//                                    flag = false;
-//                                    }else{
-//                                        String query11 = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,CG_Gender,CG_ID,Caregivers_Flex from Caregivers Order by Caregivers_Flex DESC";
-//                                        
-//                                        ps2 = con.prepareStatement(query11);
-//                                        rs2 = ps2.executeQuery();
-//                                    }
-                                        String query1 = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,CG_Gender,CG_ID,Caregivers_Flex from Caregivers Order by Caregivers_Flex DESC";
-//                                        
-                                        ps2 = con.prepareStatement(query1);
+                                    if(flag){
+                                    String query1 = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,CG_Gender,CG_ID, (Time1+Time2+Time3+Time4) AS Caregivers_Flex from Caregivers Order by Caregivers_Flex DESC";
+                                    ps2 = con.prepareStatement(query1);
+                                    rs2 = ps2.executeQuery();
+                                    flag = false;
+                                    }else{
+                                        
+                                        String query11 = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,CG_Gender,CG_ID,Caregivers_Flex from Caregivers Order by Caregivers_Flex DESC";
+                                        ps2 = con.prepareStatement(query11);
                                         rs2 = ps2.executeQuery();
-                                    
+                                    }
                                         while (rs2.next()){
                                             out.println(" Nurse: "+rs2.getString("CG_ID"));
                                             if (((rs.getString("BloodTest").equalsIgnoreCase("1"))&&(rs2.getString("BloodTest").equalsIgnoreCase("1")))||((rs.getString("DayCare").equalsIgnoreCase("1"))&&(rs2.getString("DayCare").equalsIgnoreCase("1")))||((rs.getString("BloodPressure").equalsIgnoreCase("1"))&&(rs2.getString("BloodPressure").equalsIgnoreCase("1"))))
@@ -227,16 +251,30 @@
       
         }
 
-%>
 
-
-
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Run Algorithm Page</title>
-    </head>
-    <body>
-        
-    </body>
-</html>
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<html>\n");
+      out.write("    <head>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <title>Run Algorithm Page</title>\n");
+      out.write("    </head>\n");
+      out.write("    <body>\n");
+      out.write("        \n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          out.clearBuffer();
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+        else throw new ServletException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}
