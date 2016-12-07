@@ -80,7 +80,10 @@
         <% } %>
     </tbody>
 </table>
-
+<form action="Agency.jsp">
+            <br><br>
+            <input type="submit" value="Return" name="Return" />
+        </form>
 <%
 //                        System.out.println(rs.getInt("Request_ID"));
 //                        System.out.println(rs.getString("P_ID"));
