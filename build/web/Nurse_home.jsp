@@ -21,9 +21,9 @@
         <br><br>
         <input type="submit" value="show CGinfomation" />
         </form>
-        <form method="POST" action="changeAvaliable.jsp">
+        <form method="POST" action="CG_showAvaTime.jsp">
         <br><br>
-        <input type="submit" value="Change the avalibility"/>
+        <input type="submit" value="Show Avalibility Now"/>
         </form>
         <form method="POST" action="CG_viewJob.jsp">
         <br><br>

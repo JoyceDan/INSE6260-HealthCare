@@ -148,7 +148,7 @@
                                                 
                                                 if(rs.getString("Time2").equalsIgnoreCase("1")&&rs2.getString("Time2").equalsIgnoreCase("1"))
                                                 {
-                                                    if(rs.getString("Gender").equalsIgnoreCase("Male")&&rs2.getString("CG_Gender").equalsIgnoreCase("Male")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("Female")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("None"))
+                                                    if(rs.getString("Gender").equalsIgnoreCase("Male")&&rs2.getString("CG_Gender").equalsIgnoreCase("Male")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("Female")||rs.getString("Gender").equalsIgnoreCase("None")&&rs2.getString("CG_Gender").equalsIgnoreCase("None"))
                                                     {
                                                         if((rs.getString("English").equalsIgnoreCase("1")&&rs2.getString("English").equalsIgnoreCase("1")) || (rs.getString("French").equalsIgnoreCase("1")&&rs2.getString("French").equalsIgnoreCase("1")))
                                                         {
@@ -198,7 +198,7 @@
                                                 
                                                 if(rs.getString("Time3").equalsIgnoreCase("1")&&rs2.getString("Time3").equalsIgnoreCase("1"))
                                                 {
-                                                    if(rs.getString("Gender").equalsIgnoreCase("Male")&&rs2.getString("CG_Gender").equalsIgnoreCase("Male")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("Female")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("None"))
+                                                    if(rs.getString("Gender").equalsIgnoreCase("Male")&&rs2.getString("CG_Gender").equalsIgnoreCase("Male")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("Female")||rs.getString("Gender").equalsIgnoreCase("None")&&rs2.getString("CG_Gender").equalsIgnoreCase("None"))
                                                     {
                                                         if((rs.getString("English").equalsIgnoreCase("1")&&rs2.getString("English").equalsIgnoreCase("1")) || (rs.getString("French").equalsIgnoreCase("1")&&rs2.getString("French").equalsIgnoreCase("1")))
                                                         {
@@ -247,7 +247,7 @@
                                                 }
                                                 if(rs.getString("Time4").equalsIgnoreCase("1")&&rs2.getString("Time4").equalsIgnoreCase("1"))
                                                 {
-                                                    if(rs.getString("Gender").equalsIgnoreCase("Male")&&rs2.getString("CG_Gender").equalsIgnoreCase("Male")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("Female")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("None"))
+                                                    if(rs.getString("Gender").equalsIgnoreCase("Male")&&rs2.getString("CG_Gender").equalsIgnoreCase("Male")||rs.getString("Gender").equalsIgnoreCase("Female")&&rs2.getString("CG_Gender").equalsIgnoreCase("Female")||rs.getString("Gender").equalsIgnoreCase("None")&&rs2.getString("CG_Gender").equalsIgnoreCase("None"))
                                                     {
                                                         if((rs.getString("English").equalsIgnoreCase("1")&&rs2.getString("English").equalsIgnoreCase("1")) || (rs.getString("French").equalsIgnoreCase("1")&&rs2.getString("French").equalsIgnoreCase("1")))
                                                         {

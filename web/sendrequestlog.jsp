@@ -23,6 +23,8 @@
                     String time3= request.getParameter("time3");
                     String time4= request.getParameter("time4");
                     String gender= request.getParameter("genderP");
+                    String english= request.getParameter("English");
+                    String french= request.getParameter("French");
                     
                     if((!bt.isEmpty())&&(!dc.isEmpty())&&(!bp.isEmpty())&&(!time1.isEmpty()&&(!time2.isEmpty())&&(!time3.isEmpty() )&&(!time4.isEmpty() )&&(!gender.isEmpty() ))   ){
                             
@@ -62,7 +64,7 @@
                                     Requestid = 0;
                                 }
                                 
-                                query = "insert into Request (Request_ID,P_ID,Username,Time1,Time2,Time3,Time4,Gender,BloodTest,DayCare,BloodPressure,StatusID) values (?,?,?,?,?,?,?,?,?,?,?,1)";
+                                query = "insert into Request (Request_ID,P_ID,Username,Time1,Time2,Time3,Time4,Gender,BloodTest,DayCare,BloodPressure,StatusID,Request_Flex,English,French) values (?,?,?,?,?,?,?,?,?,?,?,1,?,?,?)";
                                 ps = con.prepareStatement(query);
                                 ps.setInt(1, Requestid);
                                 ps.setInt(2, index);
@@ -75,12 +77,21 @@
                                 ps.setString(9, bt);
                                 ps.setString(10, dc);
                                 ps.setString(11, bp);
+                                ps.setString(12, "unknown");
+                                ps.setString(13, english);
+                                ps.setString(14, french);
+                                
+                                
 
                                 ps.executeUpdate();
 //
 //                                session= request.getSession();
 //                                session.setAttribute("username", username);
 //                                response.sendRedirect("login.jsp");
+                                out.println("You sent a request successfully! Please");
+                                out.println("<a href=\"Patient_home.jsp\"> Click Here </a>");
+                                out.println("to return homepage.");
+                            
 
                             }catch(SQLException e){
                                 System.out.println(e);

@@ -71,9 +71,19 @@
                         <td><select name="genderP">
                                 <option>Male</option>
                                 <option>Female</option>
-                                <option>None</option>
                             </select></td>
                     </tr>
+                    
+                    <tr>
+                        <td>The nurse's Language: </td>
+                        <td>English <input type="checkbox" name="English" value="1" />Yes <input type="checkbox" name="English" value="0" /> No</td>
+                    </tr>
+                    
+                    <tr>
+                        <td></td>
+                        <td>French <input type="checkbox" name="French" value="1" />Yes <input type="checkbox" name="French" value="0" /> No</td>
+                    </tr>
+                    
                 </tbody>
             </table>
             <input type="submit" value="Send" name="send" />

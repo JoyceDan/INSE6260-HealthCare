@@ -72,6 +72,10 @@ public final class Agency_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <form method=\"POST\" name=\"form2\" action=run.jsp> \n");
       out.write("        <input type=\"submit\" value=\"Run\" name=\"run\" />\n");
       out.write("        </form>\n");
+      out.write("        <br><br>\n");
+      out.write("        <form action=\"logout.jsp\" method=\"POST\">\n");
+      out.write("            <input type=\"submit\" value=\"Logout\" name=\"logout\">\n");
+      out.write("        </form>\n");
       out.write("        \n");
       out.write("\n");
       out.write("\n");

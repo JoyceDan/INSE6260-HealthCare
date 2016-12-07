@@ -25,7 +25,7 @@
                 String dc= request.getParameter("DC");
                 String bp= request.getParameter("BP");
                 
-                if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!city.isEmpty())&&(!email.isEmpty())&&(!english.isEmpty())&&(!french.isEmpty())){
+                if((!realname.isEmpty())&&(!gender.isEmpty())&&(!age.isEmpty())&&(!city.isEmpty())&&(!email.isEmpty())&&(!english.isEmpty())&&(!french.isEmpty())&&(!bt.isEmpty())&&(!dc.isEmpty())&&(!bp.isEmpty())){
                         Connection con = null;
                         PreparedStatement ps;
                         PreparedStatement ps1;

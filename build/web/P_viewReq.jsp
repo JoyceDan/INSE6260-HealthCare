@@ -66,6 +66,7 @@
             <th>The gender of nurse (prefer)?</th>
             <th>Ill Type</th>
             <th>Request_Status</th>
+            <th>Option</th>
             
         </tr>
     </thead>
@@ -129,7 +130,7 @@
             <td><%=rs.getString("Gender") %></td>
             <td><%=flaga%></td>
             <td><%=rs.getString("APPstatus")%></td>
-            <td>Option</td>
+            
             <td>
                 <form action="cancellog_P.jsp" method="GET">
                 <input type="submit" value="Cancel" name="cancel" />
