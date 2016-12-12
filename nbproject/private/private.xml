@@ -5,13 +5,7 @@
         <group>
             <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/run.jsp</file>
             <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/Agency.jsp</file>
-            <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/P_showAddr.jsp</file>
-            <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/sendrequestlog.jsp</file>
-            <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/changeAvaliable.jsp</file>
-            <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/Nurse_home.jsp</file>
-            <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/CG_showAvaTime.jsp</file>
-            <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/SendRequest.jsp</file>
-            <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/P_Address.jsp</file>
+            <file>file:/Users/DanQiao/NetBeansProjects/HealthCare/web/View_P_Addr.jsp</file>
         </group>
     </open-files>
 </project-private>

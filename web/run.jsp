@@ -26,12 +26,9 @@
                         ResultSet rs7;
                         String query;
                         PreparedStatement ps8;
-                        ResultSet rs8;
                         PreparedStatement ps9;
-                        ResultSet rs9;
                         PreparedStatement ps10;
                         PreparedStatement ps11;
-                        ResultSet rs11;
                         try
                         {
                             Class.forName("com.mysql.jdbc.Driver");
@@ -54,7 +51,6 @@
                                 }else{
                                     index = 0;
                                 }
-                                 out.println(index);
                                 int indexN = 0;
                                 String maxIDSqlN="select max(CG_ID) as CG_ID from Caregivers";
                                 ps = con.prepareStatement(maxIDSqlN);
@@ -64,7 +60,6 @@
                                 }else{
                                     indexN = 0;
                                 }
-                                 out.println(indexN);
                                 query = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,Gender,Request_ID,StatusID, (Time1+Time2+Time3+Time4) AS Request_Flex from Request Order by Request_Flex";
                                 ps = con.prepareStatement(query);
                                 rs = ps.executeQuery();
@@ -74,17 +69,14 @@
                                     ps11 = con.prepareStatement(shit);
                                     ps11.setInt(1, i);
                                     ps11.executeUpdate();
-                                    out.println(i);
                                 }
                                 
                                 while (rs.next()){
                                     
                                     out.println("Next Request:"+rs.getString("Request_ID"));
                                     String statusid = rs.getString("StatusID");
-                                    out.println(statusid);
                                     
                                     if(rs.getString("StatusID").equalsIgnoreCase("1")){
-                                        out.println("ohlala");
                                         String query1 = "select Time1,Time2,Time3,Time4,BloodTest,DayCare,BloodPressure,English,French,CG_Gender,CG_ID,Caregivers_Flex from Caregivers Order by Caregivers_Flex DESC";
 //                                        
                                         ps2 = con.prepareStatement(query1);
@@ -304,7 +296,9 @@
                                         continue;
                                     }
                                 }
-                                
+                           out.println("The job allocated Sucessfully! ");
+                           out.println("<a href=\"Agency.jsp\"> Click here</a>");
+                           out.println(" to return Agency Homepage.");
                                 
                             
                         }catch(SQLException e)
