@@ -69,6 +69,7 @@
             <th>Status</th>
             <th>Option1</th>
             <th>Option2</th>
+            <th>Option3</th>
         </tr>
     </thead>
     <tbody>
@@ -121,6 +122,13 @@
                 <form action="complog.jsp" method="GET">
                 <input type="submit" value="Completed" name="completed" />
                 <input type="hidden" name= "button" value=<%=idn%> />
+                </form>
+<!--                <a herf="complog.jsp?id=idn">completed</a>-->
+            </td>
+            <td>
+                <form action="View_P_Addr.jsp" method="POST">
+                <input type="submit" value="View_Address" name="view" />
+                <input type="hidden" name= "button2" value=<%=idn%> />
                 </form>
 <!--                <a herf="complog.jsp?id=idn">completed</a>-->
             </td>

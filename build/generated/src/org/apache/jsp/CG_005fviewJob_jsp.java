@@ -112,14 +112,20 @@ public final class CG_005fviewJob_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("            <th>Status</th>\n");
       out.write("            <th>Option1</th>\n");
       out.write("            <th>Option2</th>\n");
+      out.write("            <th>Option3</th>\n");
       out.write("        </tr>\n");
       out.write("    </thead>\n");
       out.write("    <tbody>\n");
       out.write("        ");
  while (rs1.next()) {
             String a = "";
+            String b = "";
             String time = rs1.getString("Final_Time");
             String idn = rs1.getString("Request_ID");
+            String status = rs1.getString("StatusID");
+//            session = request.getSession();
+//            session.setAttribute("submitid", idn);
+            
             if(time.endsWith("9")){
                 a = "9-10AM";
             }
@@ -131,6 +137,18 @@ public final class CG_005fviewJob_jsp extends org.apache.jasper.runtime.HttpJspB
             }
             if(time.endsWith("9")){
                 a = "4-5PM";
+            }
+            if(status.equalsIgnoreCase("1")){
+                b = "Submitted";
+            }
+            if(status.equalsIgnoreCase("2")){
+                b = "Allocated";
+            }
+            if(status.equalsIgnoreCase("3")){
+                b = "Cancelled";
+            }
+            if(status.equalsIgnoreCase("4")){
+                b = "Completed";
             }
         
       out.write("\n");
@@ -144,16 +162,32 @@ public final class CG_005fviewJob_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("            <td>");
       out.print(rs1.getString("Request_ID")  );
       out.write("</td>\n");
-      out.write("            <td>Allocated</td>\n");
+      out.write("            <td>");
+      out.print(b);
+      out.write("</td>\n");
       out.write("            <td>\n");
-      out.write("                <form action=\"cancellog.jsp\" method=\"POST\">\n");
+      out.write("                <form action=\"cancellog.jsp\" method=\"GET\">\n");
       out.write("                <input type=\"submit\" value=\"Cancel\" name=\"cancel\" />\n");
+      out.write("                <input type=\"hidden\" name= \"button1\" value=");
+      out.print(idn);
+      out.write(" />\n");
       out.write("                </form>\n");
       out.write("            </td>\n");
       out.write("            <td>\n");
       out.write("                <form action=\"complog.jsp\" method=\"GET\">\n");
       out.write("                <input type=\"submit\" value=\"Completed\" name=\"completed\" />\n");
-      out.write("                <input type=\"hidden\" value=\"idn\" name=\"sub_ID\" />\n");
+      out.write("                <input type=\"hidden\" name= \"button\" value=");
+      out.print(idn);
+      out.write(" />\n");
+      out.write("                </form>\n");
+      out.write("<!--                <a herf=\"complog.jsp?id=idn\">completed</a>-->\n");
+      out.write("            </td>\n");
+      out.write("            <td>\n");
+      out.write("                <form action=\"View_P_Addr.jsp\" method=\"POST\">\n");
+      out.write("                <input type=\"submit\" value=\"View_Address\" name=\"view\" />\n");
+      out.write("                <input type=\"hidden\" name= \"button2\" value=");
+      out.print(idn);
+      out.write(" />\n");
       out.write("                </form>\n");
       out.write("<!--                <a herf=\"complog.jsp?id=idn\">completed</a>-->\n");
       out.write("            </td>\n");
@@ -163,6 +197,9 @@ public final class CG_005fviewJob_jsp extends org.apache.jasper.runtime.HttpJspB
       out.write("\n");
       out.write("    </tbody>\n");
       out.write("</table>\n");
+      out.write("    <form action=\"Nurse_home.jsp\">\n");
+      out.write("            <input type=\"submit\" value=\"Return\" name=\"Return\" />\n");
+      out.write("        </form>\n");
       out.write("\n");
 
 //                        System.out.println(rs.getInt("Request_ID"));
