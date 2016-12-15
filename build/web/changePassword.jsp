@@ -56,6 +56,9 @@
                                 ps.executeUpdate();
                                 out.println(" Password Changed Successfully... Please ");
                                 out.println("<a href=\"index.jsp\"> Click Here to login. </a>");
+                            }else{
+                            out.println(" The information doesn't exit. Password Changed failed... Please try again ");
+                               
                             }
                             
                             
@@ -65,6 +68,8 @@
                          }
                     }
                 }
+                out.println(" Sorry. You need to fill in all the blank. ");
+                         
             }
         
         }
