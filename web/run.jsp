@@ -5,10 +5,14 @@
 --%>
 <%@page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.Date" %>
 <!DOCTYPE html>
 
 <%
     if("POST".equalsIgnoreCase(request.getMethod())){
+        Date date = new Date(); 
+        Date date1= date;
+        out.println(date1);
         if(request.getParameter("run")!=null ){
             if(request.getParameter("run").equals("Run")){
                 
@@ -42,15 +46,15 @@
                             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
                             
                             
-                                int index = 0;
-                                String maxIDSql="select max(Request_ID) as Request_ID from Request";
-                                ps = con.prepareStatement(maxIDSql);
-                                rs = ps.executeQuery();
-                                if(rs.next()){
-                                    index = rs.getInt("Request_ID");
-                                }else{
-                                    index = 0;
-                                }
+//                                int index = 0;
+//                                String maxIDSql="select max(Request_ID) as Request_ID from Request";
+//                                ps = con.prepareStatement(maxIDSql);
+//                                rs = ps.executeQuery();
+//                                if(rs.next()){
+//                                    index = rs.getInt("Request_ID");
+//                                }else{
+//                                    index = 0;
+//                                }
                                 int indexN = 0;
                                 String maxIDSqlN="select max(CG_ID) as CG_ID from Caregivers";
                                 ps = con.prepareStatement(maxIDSqlN);
@@ -73,7 +77,7 @@
                                 
                                 while (rs.next()){
                                     
-                                    out.println("Next Request:"+rs.getString("Request_ID"));
+//                                    out.println("Next Request:"+rs.getString("Request_ID"));
                                     String statusid = rs.getString("StatusID");
                                     
                                     if(rs.getString("StatusID").equalsIgnoreCase("1")){
@@ -83,7 +87,7 @@
                                         rs2 = ps2.executeQuery();
                                     
                                         while (rs2.next()){
-                                            out.println(" Nurse: "+rs2.getString("CG_ID"));
+//                                            out.println(" Nurse: "+rs2.getString("CG_ID"));
                                             
                                             
                                             if (((rs.getString("BloodTest").equalsIgnoreCase("1"))&&(rs2.getString("BloodTest").equalsIgnoreCase("1")))||((rs.getString("DayCare").equalsIgnoreCase("1"))&&(rs2.getString("DayCare").equalsIgnoreCase("1")))||((rs.getString("BloodPressure").equalsIgnoreCase("1"))&&(rs2.getString("BloodPressure").equalsIgnoreCase("1"))))
@@ -104,12 +108,12 @@
                                                                 indexID = 0;
                                                             }
 
-                                                            out.println(" APP_ID:"+indexID);
+//                                                            out.println(" APP_ID:"+indexID);
 
                                                             String id = rs.getString("Request_ID").toString();
                                                             String idn = rs2.getString("CG_ID").toString();
 
-                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
+//                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
 
                                                             String query2 = "insert into Appointments (AppointmentID,Final_Time,Request_ID,NurseID,StatusID) values (?,9,?,?,2)";
 
@@ -129,7 +133,7 @@
                                                             ps6 = con.prepareStatement(query4);
                                                             ps6.setString(1, idn);
                                                             ps6.executeUpdate();
-                                                             out.println(" Confirm ");
+//                                                             out.println(" Confirm ");
 
                                                             break;
 
@@ -154,12 +158,12 @@
                                                                 indexID = 0;
                                                             }
 
-                                                            out.println(" APP_ID:"+indexID);
+//                                                            out.println(" APP_ID:"+indexID);
 
                                                             String id = rs.getString("Request_ID").toString();
                                                             String idn = rs2.getString("CG_ID").toString();
 
-                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
+//                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
 
                                                             String query2 = "insert into Appointments (AppointmentID,Final_Time,Request_ID,NurseID,StatusID) values (?,11,?,?,2)";
 
@@ -179,7 +183,7 @@
                                                             ps10 = con.prepareStatement(query4);
                                                             ps10.setString(1, idn);
                                                             ps10.executeUpdate();
-                                                             out.println(" Confirm ");
+//                                                             out.println(" Confirm ");
 
                                                             break;
 
@@ -204,12 +208,12 @@
                                                                 indexID = 0;
                                                             }
 
-                                                            out.println(" APP_ID:"+indexID);
+//                                                            out.println(" APP_ID:"+indexID);
 
                                                             String id = rs.getString("Request_ID").toString();
                                                             String idn = rs2.getString("CG_ID").toString();
 
-                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
+//                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
 
                                                             String query2 = "insert into Appointments (AppointmentID,Final_Time,Request_ID,NurseID,StatusID) values (?,2,?,?,2)";
 
@@ -229,7 +233,7 @@
                                                             ps10 = con.prepareStatement(query4);
                                                             ps10.setString(1, idn);
                                                             ps10.executeUpdate();
-                                                             out.println(" Confirm ");
+//                                                             out.println(" Confirm ");
 
                                                             break;
 
@@ -253,12 +257,12 @@
                                                                 indexID = 0;
                                                             }
 
-                                                            out.println(" APP_ID:"+indexID);
+//                                                            out.println(" APP_ID:"+indexID);
 
                                                             String id = rs.getString("Request_ID").toString();
                                                             String idn = rs2.getString("CG_ID").toString();
 
-                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
+//                                                            out.println(" Requst_ID="+id+" CG_ID="+idn);
 
                                                             String query2 = "insert into Appointments (AppointmentID,Final_Time,Request_ID,NurseID,StatusID) values (?,4,?,?,2)";
 
@@ -278,7 +282,7 @@
                                                             ps10 = con.prepareStatement(query4);
                                                             ps10.setString(1, idn);
                                                             ps10.executeUpdate();
-                                                             out.println(" Confirm ");
+//                                                             out.println(" Confirm ");
 
                                                             break;
 
@@ -296,7 +300,8 @@
                                         continue;
                                     }
                                 }
-                           out.println("The job allocated Sucessfully! ");
+                           out.println(date);
+                           out.println("The job allocated Successfully! ");
                            out.println("<a href=\"Agency.jsp\"> Click here</a>");
                            out.println(" to return Agency Homepage.");
                                 

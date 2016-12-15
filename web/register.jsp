@@ -145,7 +145,7 @@
                     
                         }
                         else{
-                            out.println("The two password are not match! Please try again.");
+                            out.println("The two passwords are not match! Please try again.");
                         }
                     }
                     else{
@@ -206,6 +206,10 @@
                 </tbody>
             </table>
             <input type="submit" value="Register" name="register" />
+            
         </form>
+            <form action="index.jsp">
+            <input type="submit" value="Return" name="Return" />
+            </form>
     </body>
 </html>

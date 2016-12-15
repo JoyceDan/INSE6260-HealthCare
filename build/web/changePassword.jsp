@@ -91,5 +91,8 @@
             <br><br>
             <input type="submit" name="changePwd" value="Change Password">
         </form>
+        <form action="index.jsp">
+        <input type="submit" value="Return" name="Return" />
+        </form>
     </body>
 </html>

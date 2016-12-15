@@ -37,17 +37,7 @@
                         try
                         {
                             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Healthcare", "root", "root");
-                                
-//                                int index = 0;
-//                                String maxIDSql="select max(P_ID) as P_ID from Patient";
-//                                ps = con.prepareStatement(maxIDSql);
-//                                rs = ps.executeQuery();
-//                                if(rs.next()){
-//                                    index = rs.getInt("P_ID")+1;
-//                                }else{
-//                                    index = 0;
-//                                }
-//                                query = "insert into Patient (P_ID,P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?,?)";
+                              
                                 int index = 0;
                                 query2 = "select P_ID from Patient where P_Username=?";
                                 ps1 = con.prepareStatement(query2);
@@ -58,8 +48,6 @@
                                 }else{
                                      out.println("Wrong system");
                                 }
-                                out.println("Test2");
-                                out.println(index);
 
                                 query = "update Patient set P_Name=?,P_Gender=?,P_Age=?,P_Email=? where P_ID=?";
                                 ps = con.prepareStatement(query);

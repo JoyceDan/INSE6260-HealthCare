@@ -72,7 +72,7 @@
 </table>
     <form method="POST" action="P_Info.jsp">
         <br><br>
-        <input type="submit" value="update infomation" />
+        <input type="submit" value="update information" />
     </form>
     
     <form action="Patient_home.jsp">

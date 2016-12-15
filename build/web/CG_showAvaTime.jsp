@@ -63,7 +63,7 @@
 </table>
     <form method="POST" action="changeAvaliable.jsp">
         <br><br>
-        <input type="submit" value="update your Avaliablity" />
+        <input type="submit" value="update your Availability" />
     </form>
     
     <form action="Nurse_home.jsp">

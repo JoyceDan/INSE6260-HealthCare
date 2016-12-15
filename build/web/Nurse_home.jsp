@@ -23,7 +23,7 @@
         </form>
         <form method="POST" action="CG_showAvaTime.jsp">
         <br><br>
-        <input type="submit" value="Show Avalibility Now"/>
+        <input type="submit" value="Show Availability Now"/>
         </form>
         <form method="POST" action="CG_viewJob.jsp">
         <br><br>

@@ -69,8 +69,19 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
                         if(password.equals(repassword)){
                             Connection con= null;
                             PreparedStatement ps;
-                            ResultSet rs;
                             String query;
+                            PreparedStatement ps1;
+                            PreparedStatement ps2;
+                             ResultSet rs2;
+                            String query1;
+                            PreparedStatement ps3;
+                            ResultSet rs3;
+                            String query3;
+                            PreparedStatement ps4;
+                            String query5;
+                            PreparedStatement ps5;
+                             PreparedStatement ps6;
+                             ResultSet rs6;
                         
                             try{
                             Class.forName("com.mysql.jdbc.Driver");
@@ -93,6 +104,83 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
                                 session= request.getSession();
                                 session.setAttribute("username", username);
                                 response.sendRedirect("login.jsp");
+                                
+                                if(identify.equalsIgnoreCase("Patient")){
+                                    int index = 0;
+                                    String maxIDSql="select max(P_ID) as P_ID from Patient";
+                                    ps2 = con.prepareStatement(maxIDSql);
+                                    rs2 = ps2.executeQuery();
+                                    if(rs2.next()){
+                                        index = rs2.getInt("P_ID")+1;
+                                    }else{
+                                        index = 1;
+                                    }
+                                    query1 = "insert into Patient (P_ID,P_Username,P_Name,P_Gender,P_Age,P_Email) values (?,?,?,?,?,?)";
+
+                                    ps1 = con.prepareStatement(query1);
+                                    ps1.setInt(1, index);
+                                    ps1.setString(2, username);
+                                    ps1.setString(3, "unknown");
+                                    ps1.setString(4, "unknown");
+                                    ps1.setString(5, "unknown");
+                                    ps1.setString(6, "unknown");
+                                    ps1.executeUpdate();
+                                    
+                                    int indexAP = 0;
+                                    String maxIDSqlAP="select max(AddressID) as AddressID from Address";
+                                    ps6 = con.prepareStatement(maxIDSqlAP);
+                                    rs6 = ps6.executeQuery();
+                                    if(rs6.next()){
+                                        indexAP = rs6.getInt("AddressID")+1;
+                                    }else{
+                                        indexAP = 1;
+                                    }
+                                    
+                                    query5 = "insert into Address (AddressID,P_ID,Line1,Line2,City,PostCode) values (?,?,?,?,?,?)";
+                                    ps5 = con.prepareStatement(query5);
+                                    ps5.setInt(1, indexAP);
+                                    ps5.setInt(2, index);
+                                    ps5.setString(3, "unknown");
+                                    ps5.setString(4, "unknown");
+                                    ps5.setString(5, "unknown");
+                                    ps5.setString(6, "unknown");
+//                                    out.println("test address");
+//                                    out.println(indexAP+index);
+                                    ps5.executeUpdate();
+                                }else{
+                                    int index1 = 0;
+                                    String maxIDSql1="select max(CG_ID) as CG_ID from Caregivers";
+                                    ps3 = con.prepareStatement(maxIDSql1);
+                                    rs3 = ps3.executeQuery();
+                                    if(rs3.next()){
+                                        index1 = rs3.getInt("CG_ID")+1;
+                                    }else{
+                                        index1 = 1;
+                                    }
+                                    
+                                    query3 = "insert into Caregivers (CG_ID,CG_Username,CG_Name,CG_Age,CG_Gender,CG_Location,CG_ContactEmail,English,French,BloodTest,DayCare,BloodPressure,Time1,Time2,Time3,Time4,Caregivers_Flex) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                                    ps4 = con.prepareStatement(query3);
+                                    ps4.setInt(1, index1);
+                                    ps4.setString(2, username);
+                                    ps4.setString(3, "unknown");
+                                    ps4.setString(4, "unknown");
+                                    ps4.setString(5, "unknown");
+                                    ps4.setString(6, "unknown");
+                                    ps4.setString(7, "unknown");
+                                    ps4.setString(8, "0");
+                                    ps4.setString(9, "0");
+                                    ps4.setString(10, "0");
+                                    ps4.setString(11, "0");
+                                    ps4.setString(12, "0");
+                                    ps4.setString(13, "0");
+                                    ps4.setString(14, "0");
+                                    ps4.setString(15, "0");
+                                    ps4.setString(16, "0");
+                                    ps4.setString(17, "unknown");
+                                    ps4.executeUpdate();
+                                }
+                                
 
                             }catch(SQLException e){
                                 System.out.println(e);
@@ -100,7 +188,7 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
                     
                         }
                         else{
-                            out.println("The two password are not match! Please try again.");
+                            out.println("The two passwords are not match! Please try again.");
                         }
                     }
                     else{
@@ -162,7 +250,11 @@ public final class register_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </tbody>\n");
       out.write("            </table>\n");
       out.write("            <input type=\"submit\" value=\"Register\" name=\"register\" />\n");
+      out.write("            \n");
       out.write("        </form>\n");
+      out.write("            <form action=\"index.jsp\">\n");
+      out.write("            <input type=\"submit\" value=\"Return\" name=\"Return\" />\n");
+      out.write("            </form>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

@@ -18,7 +18,7 @@
     <body>
         <form method="POST" action="P_showInfo.jsp">
         <br><br>
-        <input type="submit" value="show infomation" />
+        <input type="submit" value="show information" />
         </form>
         <form method="POST" action="P_showAddr.jsp">
         <br><br>
