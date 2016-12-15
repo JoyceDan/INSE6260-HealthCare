@@ -10,9 +10,9 @@
 
 <%
     if("POST".equalsIgnoreCase(request.getMethod())){
-        Date date = new Date(); 
-        Date date1= date;
-        out.println(date1);
+        
+        long start = new Date().getTime();
+        
         if(request.getParameter("run")!=null ){
             if(request.getParameter("run").equals("Run")){
                 
@@ -300,7 +300,8 @@
                                         continue;
                                     }
                                 }
-                           out.println(date);
+                           long end = new Date().getTime();
+                           out.println("This project took " + (end - start) + "milliseconds. ");
                            out.println("The job allocated Successfully! ");
                            out.println("<a href=\"Agency.jsp\"> Click here</a>");
                            out.println(" to return Agency Homepage.");
