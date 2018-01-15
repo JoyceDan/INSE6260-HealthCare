@@ -1,0 +1,3 @@
+# INSE6260-HealthCare
+netbean project jsp+mysql
+Spectrum healthcare is an online health services agency which matches patients with healthcare professionals. Spectrum has a database of independent healthcare personnel and assigns healthcare professional to patient’s home visits on the daily bases. Spectrum offers various health services from blood work to physiotherapy. Spectrum automate the process of offering health services to patients from the convenience of their homes and improve the patients experience by allowing them to set preferences on care givers gender and language, while improving care giver satisfaction by scheduling care givers based on their work schedule preferences and availability constraints.
